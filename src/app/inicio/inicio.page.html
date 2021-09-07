@@ -1,0 +1,89 @@
+<ion-header class="header">
+  <ion-navbar>
+    <div class="align-header">
+          <ion-buttons class="size" slot="start">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+       <div id="cabeza">   
+        <ion-title mode=ios class="tittle" >
+          Verificación
+        </ion-title>
+      </div>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+<ion-content *ngIf="user$ | async as user">
+
+  <br>
+  <div class="texto">
+    <p>Gracias por registrarte!</p>
+  </div>
+  <div class="texto">
+    <p>-------------------------------</p>
+  </div>
+  <br>
+
+  <div class="texto">
+    <p>Te hemos enviado un correo de verificación a <strong>{{user.email}}</strong></p>
+  </div>
+  <br>
+  <br>
+  <div class="texto">
+    <p>Revisa tu correo electronico para confirmar tu cuenta (Puede estar en spam)</p>
+  </div>
+  <br>
+  <div class="align"> 
+
+  <ion-grid class="grid">
+
+  <ion-row class="row">
+
+  <ion-col class="column">
+    <ion-button type="submit" class="comerciales" (click)="sendemail()">
+      Reenviar correo
+    </ion-button>
+  </ion-col>
+  <ion-col class="column">
+    <ion-button  class="comerciales" routerLink="/ingresoadmin">
+      Volver a inicio
+    </ion-button>
+  </ion-col>
+
+  </ion-row>
+
+  <!-- <ion-row class="row">
+
+  <ion-col class="column">
+    <div class="comerciales" routerLink="/ccuno">
+      CC. Bulevar
+    </div>
+    </ion-col>
+
+  </ion-row>
+
+  <ion-row class="row">
+
+  <ion-col class="column">
+    <div class="comerciales" routerLink="/ccuno">
+      CC. Unicentro
+    </div>
+    </ion-col>
+
+  </ion-row>
+
+  <ion-row class="row">
+
+  <ion-col class="column">
+    <div class="comerciales" routerLink="/ccuno">
+      CC. Santafe
+    </div>
+    </ion-col>
+
+  </ion-row> -->
+
+  </ion-grid>
+</div>
+
+
+</ion-content>

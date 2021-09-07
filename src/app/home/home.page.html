@@ -1,0 +1,85 @@
+<ion-header class="header">
+  <ion-navbar>
+    <div class="align-header">
+          <ion-buttons class="size" slot="start" color="dark">
+            <ion-menu-button color="dark"></ion-menu-button>
+          </ion-buttons>
+       <div id="cabeza">   
+        <ion-title mode=ios class="tittle" >
+          Perfil
+        </ion-title>
+      </div>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+<ion-refresher slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200">
+  <ion-refresher-content></ion-refresher-content>
+</ion-refresher>
+
+<ion-menu side="start" menuId="primerMenu" contentId="principal" class="my-custom-menu">
+  <ion-header class="menuheader" >
+    <ion-navbar>
+      <ion-title class="tittle">Menu</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+
+  <ion-content>
+
+    <ion-list class="listamenu" >
+      <!--<ion-item color="transparent"  routerLink="/details">
+        <ion-label class="labelmenu" >Item Lines Inset</ion-label>
+      </ion-item>-->
+      <ion-item  routerLink="/ingresoadmin" color="transparent">
+        <ion-label class="labelmenu">Administrador</ion-label>
+      </ion-item>
+    </ion-list>
+
+  </ion-content>
+</ion-menu>
+
+<ion-router-outlet id="principal"></ion-router-outlet>
+
+<!--  [(ngModel)]="mi_piso"    <br>
+          <div class="texto">
+            <p>Seleccione el carro que va a salir</p>
+          </div>
+          <div class="texto">
+            <p>Para activar el carro oprima "Comenzar"</p>
+          </div>  -->
+<ion-content padding>
+
+<!--
+  <ion-button (click)="clicBotonBorrar()">Borrar tarea</ion-button>
+
+  <ion-button (click)="clicBotonModificar()">Modificar tarea</ion-button> // para seleccionar al primir(click)="selecTarea(documentTarea)
+  -->
+  <div class="total">
+    <ion-grid class="grid">
+      <ion-row class="row" >
+        <ion-col class="columna" *ngFor="let documentTarea of arrayColeccionTareas" >
+          
+            <button [ngStyle]="{'background-color': documentTarea.data.out? '#c7eb7a' : '#c9e9fc'}" [disabled]="cancelado"  class="buttonpad" (click)="selecTarea(documentTarea)" (click)="abrirmodal(documentTarea.data.id,documentTarea.data.uuid,documentTarea.data.marca,documentTarea.data.color,documentTarea.data.viajes,documentTarea.data.tiempo,documentTarea.data.producido,documentTarea.data.out,documentTarea.data.encurso,this.idviaje,documentTarea.data.dia)" >
+              <ion-icon name="car-sport-outline" style="zoom:4.0;"></ion-icon>
+               <br> Carro {{ documentTarea.data.id }} 
+              </button>
+          
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+ </div>
+</ion-content>
+
+<ion-footer style="background-color: #8bd3f8">
+  <ion-toolbar>
+    <ion-grid>
+    <ion-row>
+    
+    <ion-col style="text-align: center"><p style="color: black;"> {{ statusMessage }}</p></ion-col>
+    
+    </ion-row>
+  </ion-grid>
+    
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,192 @@
+body {
+  cursor: url('http://ionicframework.com/img/finger.png'), auto;
+}
+
+.buttonpad {
+ 
+  margin-top: 10px;
+  display: inline-block;
+  font-size: 30px; //5vw;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  background-color: #c9e9fc;//#CDFCD8 ;// rgb(255, 153,81);
+  border: 4px solid black;
+  border-radius: 25px;
+  box-shadow: -8px 20px #409dc4;
+  width: 100%;
+  height: 70px; //100vh o 100vw wiewheight o viewwidth
+  color: black;
+  justify-content: center;
+  //#ff9951
+  //#DADADA
+}
+
+.container {
+  //border-bottom: solid 1px black;
+  font-size: 30px;
+  //border-bottom-style: none;
+  //border-right-style: none;
+  text-emphasis: center;
+  color: black;
+  text-align: center;
+  width: 100%;
+  height: 30px;
+  margin-top: 20px;
+  //background-color: #419f00;
+}
+
+.etiqueta{
+  font-size: 8vw;
+  font-weight: bold;
+}
+
+
+
+.row{
+  position: relative;
+  width: 100%;
+  //background-color: pink;
+}
+
+.total{
+  //background-color: red;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.coltotal {
+  margin-top: 15px;
+  font-weight: bold;
+  border: solid 1px black;
+  border-bottom-style: none;
+  border-right-style: none;
+  text-emphasis: center;
+  color: black;
+  text-align: center;
+  background-color: #419f00;
+  width: 15vw;
+  height: 25px;
+  font-size: 2.5vw;
+}
+
+.coltotals {
+  border: solid 1px black;
+  border-bottom-style: none;
+  border-right-style: none;
+  text-emphasis: center;
+  color: black;
+  text-align: center;
+  background-color: #c7eb7a;
+  font-size: 2.5vw;
+  width: 15vw;
+}
+
+.bot{
+  font-size: 4vw;
+  
+  border: 3px solid black;
+  border-radius: 25px;
+  //box-shadow: -8px 20px #419f00;
+  color: black;
+  width: 100px;
+  height: 30px;
+  background-color: #c7eb7a;
+  //position: absolute;
+  //bottom: 25%;
+  //left: 35%; 
+ }
+
+//-------
+
+
+.tittle{
+    color: black;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+    //align-items: center;  //siempre van a ser del contenedor al igual que align-contect
+    //display: flex;
+   // background-color: #CBCBCB;
+   // font-family: 'Questrial';
+  }
+
+  .lista{
+      background-color: transparent;
+  }
+
+
+.labelid{
+  //background-color: brown;
+  width: 30%;
+  font-size: 25px;
+ }
+
+ .botones{
+   width: 100%;
+   display: flex;
+   justify-content: space-evenly;
+   height: 50px;
+   padding: 10px;
+   //background-color: pink;
+ }
+
+
+.botones:active {
+    background-color: #66bde6  ;
+    box-shadow: 0 5px #666;
+    transform: translateY(6px);
+  }
+  
+  .botones:focus {
+     background-color: #e3f59b; 
+  }
+
+  ion-item{
+    font-size: 20px;
+    color: black;
+  
+  }
+
+  ion-label{
+    background-color: transparent;
+    text-align: center;
+    font-size: 50px;
+    color: black;
+  }
+
+ion-content {
+    --background:#66bde6;
+  }
+  
+  // ion-header{
+  //   height: 30vh;
+  //   font-size: 40px;
+  //   justify-items: center;
+  //   align-items: center;
+  //   //box-shadow: 0 20px #8bd3f8;
+  //   border-bottom: 2px solid black;
+  // }
+
+  ion-toolbar {
+    --background: transparent;
+    --ion-color-base: transparent !important;
+    }
+
+  .header{
+    background-color: #8bd3f8;
+    height: 50px;
+  }
+
+/*Escala de Verdes
+#419f00 mas oscuro
+#4eaa03
+#5ab507
+#66c00b
+#72cb10
+#89d631
+#a9e159
+#c7eb7a
+#e3f59b
+#ffffbb mas claro
+*/

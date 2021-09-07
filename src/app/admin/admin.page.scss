@@ -1,0 +1,105 @@
+.total{
+  background-color: rgb(213, 207, 247);
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  //justify-content: center;
+  //align-items: flex-start;
+}
+
+.total__tittle{
+ // background-color: blueviolet;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.total__cardholder{
+  height: 30%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ // background-color: aqua;
+}
+
+
+.total__divlabel{
+  background-color: white;
+  height: 90%;
+  width: 80%;
+  border: solid 2px black;
+  border-radius: 10px;
+  padding: 10px;
+  max-width: 400px;
+}
+
+.total__divlabel__first{
+  width: 100%;
+  height: 30%;
+//  background-color: yellow;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.total__divlabel__second{
+  height: 20%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+ // background-color: blue;  
+}
+
+.total__divlabel__third{
+  height: 25%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+ /// background-color: red;
+  
+}
+
+.total__divlabel__forth{
+  height: 25%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+ // background-color: yellow;
+}
+
+.total__divlabel--tipo{
+  color: black;
+  font-size: 15px;
+  width: 90%;
+  //background-color: aquamarine;
+}
+
+.total__divlabel__tipo--icon{
+height: 30px;
+width: 30px;
+}
+
+.total__divlabel--numero{
+  color: black;
+  font-size: 13px;
+  //background-color: aquamarine;
+  margin-left: 60px;
+}
+
+.total__divlabel--saldotext{
+  color: black;
+  font-size: 20px;
+  //background-color: aquamarine;
+}
+
+.total__divlabel--saldo{
+  color: black;
+  font-size: 18px;
+  //background-color: aquamarine;
+}

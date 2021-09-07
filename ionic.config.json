@@ -1,0 +1,8 @@
+{
+  "name": "BLE AIRCALL",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular"
+}

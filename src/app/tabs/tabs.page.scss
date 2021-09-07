@@ -1,0 +1,149 @@
+.tittle{
+    color: black;
+    font-size: 18px;
+    text-align: center;
+    width: 50%;
+    position: absolute;
+    top: 15px;
+    //background-color: blue;
+    //align-items: center;  //siempre van a ser del contenedor al igual que align-contect
+    //display: flex;
+    //background-color: #CBCBCB;
+   // font-family: 'Questrial';
+  }
+
+
+  ion-toolbar {
+    --background: transparent;
+    --ion-color-base: transparent !important;
+    }
+
+  ion-header{
+    //height: 100px;
+    background-color: #000000;
+    color: white;
+    justify-items: center;
+    align-items: center;
+   // border-bottom: white;
+    //box-shadow: 0 20px rgb(228, 43, 134);
+    //border-bottom: 2px solid black;
+  }
+
+  .headercontainer{
+    //background-color: red;
+    width: 100%;
+    height: 60px;
+    display: flex;
+  }
+
+
+  .back{
+     // background-color: purple;
+      width: 20%;
+      height: 40px;   
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .headertittle{
+   // background-color: powderblue;
+   margin-top: 20px;
+    width: 60%;
+    height: 40px;
+    text-align: center;
+    color: white;
+  }
+
+  .headericon{
+    //background-color: purple;
+    width: 20%;
+    height: 60px;
+    text-align: center;
+    color: white;
+  }
+
+  
+  .content{
+    width: 100%;
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(8,7,42,1) 75%, rgb(8, 10, 63) 100%);
+    height: 100px;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .tiempo{
+    background-color:transparent;
+    width: 80%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .tiempo p{
+    color: white;
+  }
+
+  
+.tabs{
+  margin-top: 160px;
+  //height: 80;
+  background-color: #f295c3;
+}
+
+  .tab_bar{
+    height: 80px;
+    border: solid 3px rgb(150, 137, 137);
+    background-color: whitesmoke;
+    
+  }
+
+  .tab_button{
+    background-color: transparent;
+    color: black;
+  }
+
+  .icono{
+    margin-top: 4px;
+    width: 80%;
+    height: 80%;
+    color: white;
+  }
+
+  .iconoback{
+    margin-top: 10px;
+    width: 80%;
+    height: 80%;
+    color: white;
+
+  }
+
+
+ion-tabs{
+  color: transparent;
+}
+
+
+//-------------------------------------------------
+
+.divWeatherMain{
+  display: block;
+  border-radius: 10px;
+  width: 30%;
+  height: 100%;
+  background: rgb(0,0,0);
+  background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(8,7,42,1) 75%, rgb(8, 10, 63) 100%);
+  color: white;;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.weatherWidgetRow{
+  display:block;
+  margin:0 auto;
+  width: fit-content;
+}
+
+

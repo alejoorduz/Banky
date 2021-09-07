@@ -1,0 +1,58 @@
+<ion-content>
+  <div class="total">
+    <div class="tittle">
+      Consulta el estado de tu cuenta de ahorros
+    </div>
+    
+    <ion-grid class="grid">
+      <ion-row class="row" *ngFor="let documentTarea of arrayColeccionTareas" >
+        
+          
+            <button [disabled]="cancelado"  class="buttonpad" 
+            (click)="abrirmodal(documentTarea.data.id,documentTarea.data.usuario,documentTarea.data.cargo,documentTarea.data.texto,documentTarea.data.costo)">
+            <div class="centrar">
+            <!--<div [ngStyle]="{'background-color': documentTarea.data.out? 'green' : 'red'}" class="circulo"></div>-->
+            </div>
+            <div class="cont">
+          <div class="izq">
+              <div class="izq_arriba">
+              Cuenta de Ahorro {{ documentTarea.data.nombre }}
+              </div>
+              <div class="izq_abajo">
+              Saldo Disponible {{ documentTarea.data.resumen }}
+              </div>
+          </div>
+          <div class="der">
+              <!-- <div class="der_arriba">
+               Categoria: {{ documentTarea.data.categoria }}
+              </div> -->
+              <button class="der__opciones">Opciones</button>
+              <button class="der__movimientos">Ver Movimientos</button>
+              <!-- <div class="der_abajo">
+               Costo: {{ documentTarea.data.costo }} lk/{{ documentTarea.data.unidad }}
+              </div> -->
+          </div>
+        </div>
+         
+          
+           
+      
+         
+            <!-- <br> <strong>
+            {{ documentTarea.data.producido | currency:'':symbol: '1.0-2' }}</strong> -->
+            <!--<br> 
+            Carro {{ documentTarea.data.color}} -->
+            </button>
+          
+        
+      </ion-row>
+    </ion-grid>
+ </div>
+ <ion-fab vertical="top" horizontal="end" slot="fixed">
+  <ion-fab-button class="float" (click)="agregarpublic()">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+</ion-content>
+
+

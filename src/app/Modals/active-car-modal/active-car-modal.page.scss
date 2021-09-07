@@ -1,0 +1,80 @@
+.container{
+    font-size: 50px;
+    width: 90vw;
+    margin-left: 15px;
+   // display: block;
+    text-align: center;
+    align-items: center;
+}
+
+.div{
+    text-align: center;
+    margin-top: 10vh;
+    //background-color:#72cb10;
+    align-items: center;
+    height: 40vh;
+    width: 100%;
+}
+
+.botones{
+    display: inline-block;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    border: 5px solid black;
+    border-radius: 25px;
+    box-shadow: -8px 20px #409dc4;
+    color: black;
+    width: 70%;
+    height: 20%;
+    margin-top: 10px;
+    background-color:   #8bd3f8
+}
+
+.botones:active {
+    background-color: #66bde6  ;
+    box-shadow: 0 5px #666;
+    transform: translateY(6px);
+  }
+  
+  .botones:focus {
+     background-color: #e3f59b; 
+  }
+
+  ion-content {
+    --background: #66bde6;
+  }
+
+  .volver{
+    font-size: 25px;
+    border: 3px solid black;
+    border-radius: 25px;
+   // box-shadow: -8px 20px #419f00;
+    color: black;
+    width: 100px;
+    height: 40px;
+    background-color: #c7eb7a;
+    position: absolute;
+    bottom: 25%;
+    left: 35%;
+}
+
+#tiempo{
+  font-size: 8vw;
+  font-weight: bold;
+  
+}
+
+#tiempomsj{
+  font-size: 6vw;
+}
+
+#producido{
+  font-size: 8vw;
+  font-weight: bold;
+}
+
+#producidomsj{
+  font-size: 6vw;
+}

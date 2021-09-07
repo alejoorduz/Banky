@@ -1,0 +1,63 @@
+<!-- <ion-header class="header">
+  <ion-navbar>
+    <ion-buttons slot="start">
+      <ion-back-button routerLink="/home"></ion-back-button>
+    </ion-buttons>
+    <div class="align-header">
+       <div class="cabeza">   
+        <ion-title class="tittle" >
+          <strong>Publicaciones</strong>
+        </ion-title> -->
+       <!-- <button  class="home" routerLink="/home"><ion-icon name="home"></ion-icon></button>
+        <button  class="alltrips" routerLink="/details"><ion-icon name="folder-outline"></ion-icon></button> -->
+      <!-- </div>
+    </div>
+   
+  </ion-navbar>
+</ion-header> -->
+<!--  color="primary"  -->
+<ion-content>
+  
+  
+  <!-- <div class="container" [hidden]="cancelado">
+    
+    <button [hidden]='boton' class="botones"  (click)="comenzar()">
+      <ion-icon name="add-circle-outline"></ion-icon>
+      Agregar Servicio
+    </button>
+    
+    
+  </div> -->
+
+  <div class="total">
+    <div class="total__tittle">
+      Saldos y Movimientos
+    </div>
+
+    <div class="total__cardholder">
+    <div class="total__divlabel">
+      <div class="total__divlabel__first">
+    <ion-icon name="logo-usd"></ion-icon>
+    <ion-label class="total__divlabel--tipo">Cuenta de Corriente</ion-label>
+    <ion-icon class="total__divlabel__tipo--icon" (click)="open_options()" name="ellipsis-vertical-outline"></ion-icon>
+    </div>
+    <div class="total__divlabel__second">
+    <ion-label class="total__divlabel--numero">{{this.cuenta}}</ion-label>
+    </div>
+    <div class="total__divlabel__third">
+    <ion-label class="total__divlabel--saldotext">Saldo Disponible</ion-label>
+    </div>
+    <div class="total__divlabel__forth">
+    <ion-label class="total__divlabel--saldo">{{this.saldo | currency:"$":true:"1.2"}}</ion-label>
+    </div>
+    </div>
+    </div>
+ </div>
+ <!-- <ion-fab vertical="top" horizontal="end" slot="fixed" color="danger">
+  <ion-fab-button class="float" (click)="agregarpublic()">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab> -->
+</ion-content>
+
+

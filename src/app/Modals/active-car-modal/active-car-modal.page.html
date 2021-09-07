@@ -1,0 +1,27 @@
+
+<ion-content>
+
+<div class="container">
+
+    <p id="tiempo"></p>
+    <p id="tiempomsj"></p>
+    <p id="producido"></p>
+    <p id="producidomsj"></p>
+<ion-spinner [hidden]='spinner'></ion-spinner>
+
+<div class="div">
+    <button [hidden]='boton' class="botones" (click)="connected(uuid,id)">No, intentar nuevamente</button>
+   
+   <br>
+   <br>
+  
+   <button [hidden]='boton' class="botones"  (click)="comenzar()">Si, comenzar viaje</button>
+
+   <br>
+  <button [hidden]='botonatras' class="volver"  (click)='conarg()'>Atrás</button>
+    
+   </div>
+
+</div>
+
+</ion-content>  

@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="headercontainer">
+      <div class="back">
+
+      </div>
+  <div class="headertittle">
+    <ion-title >Registrate</ion-title>
+  </div>
+  <div class="headericon">
+     <!-- <ion-icon class="icono" name="person-circle-outline" routerLink="/home"></ion-icon> -->
+    </div>
+  </div>
+  </ion-toolbar>
+ 
+</ion-header>
+
+<ion-content>
+  <form>
+
+      <div class="div_email">
+      <ion-item class="email">
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input type="text" #nombre required></ion-input>
+      </ion-item>
+      </div>
+
+      <div class="div_email">
+        <ion-item class="email">
+          <ion-label position="floating">Apellido</ion-label>
+          <ion-input type="text" #apellido required></ion-input>
+        </ion-item>
+        </div>
+
+    <div class="div_email">
+      <ion-item class="email">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="text" #email required></ion-input>
+      </ion-item>
+      </div>
+
+      <div class="div_contra">
+        <ion-item class="contra">
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input type="password" #password required></ion-input>
+        </ion-item>
+      </div>
+      <!-- <div class="div_contra">
+        <ion-item class="contra">
+          <ion-label position="floating">Confirmar Contraseña</ion-label>
+          <ion-input type="password" #password required></ion-input>
+        </ion-item>
+      </div> -->
+  
+      <div class="div_login">
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" class="bot_entrar" (click)="onRegister(email,password,nombre,apellido)">
+          Registrame
+        </ion-button>
+      </ion-col>
+    </ion-row>
+</div>
+  </form>
+
+  <div class="div_login">
+    <p>
+      <a href="/ingresoadmin">Ya tengo una cuenta</a>
+    </p>
+  </div>
+
+</ion-content>

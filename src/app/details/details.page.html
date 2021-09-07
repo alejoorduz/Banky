@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Recuperación de contraseña</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form>
+    <ion-item lines="full">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="text" #email required></ion-input>
+    </ion-item>
+  
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" (click)="onReset(email)">
+          Recuperar cuenta
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </form>
+
+
+</ion-content>

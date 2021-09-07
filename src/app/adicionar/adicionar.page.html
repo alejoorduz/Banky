@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Crear Publicacion</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Publicar oferta </ion-label>
+    <ion-input [(ngModel)]="publicacion.resumen"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Costo en Lukakumens</ion-label>
+    <ion-input [(ngModel)]="publicacion.costo"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Unidad (hora,taller,dia,etc)</ion-label>
+    <ion-input [(ngModel)]="publicacion.unidad"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Categoria (lista desplegable)</ion-label>
+    <ion-input [(ngModel)]="publicacion.categoria"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Observaciones</ion-label>
+    <ion-input [(ngModel)]="publicacion.observaciones"></ion-input>
+  </ion-item>
+
+  
+
+  <ion-button (click)="insertar()" type="submit">Añadir tarea</ion-button>
+</ion-content>

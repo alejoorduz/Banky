@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="headercontainer">
+      <div class="back">
+        <ion-icon name="exit-outline" class="iconoback" (click)="cerrarsesion()"></ion-icon>
+      </div>
+  <div class="headertittle">
+    <ion-title > Banky </ion-title>
+  </div>
+  <div class="headericon">
+     <ion-icon class="icono" name="person-circle-outline"></ion-icon>
+    </div>
+  </div>
+  </ion-toolbar>
+ 
+</ion-header>
+
+<ion-content>
+  <div class="content">
+<div class="tiempo">
+  <p>Bienvenido {{this.name}} </p> 
+  <p id="lluvia"></p>
+</div>
+<div class="divWeatherMain"> 
+  <!-- <div *ngIf="WeatherData.isDay" class="weatherWidgetRow">
+      <i class="fas fa-3x fa-sun sun"></i>  
+  </div>   
+  <div *ngIf="!WeatherData.isDay" class="weatherWidgetRow">
+      <i class="fas fa-3x fa-moon moon"></i>  
+  </div>   
+  <div class="weatherWidgetRow cloudDiv">
+      <i class="fas fa-cloud fa-3x cloud"></i>
+  </div> -->
+  <div class="weatherWidgetRow" style="font-size: 28px;margin-top: 5px;">{{WeatherData.temp_celcius}}°</div>
+  <div class="weatherWidgetRow" style="font-size: 12px;"> {{this.day_mood}}°</div>
+  <!-- <div class="weatherWidgetRow" style="font-size: 10px;margin-top: 10px;">{{WeatherData.name}}</div> -->
+  <div class="weatherWidgetRow" style="font-size: 10px;">Humidity: {{WeatherData.main.humidity}}%</div>
+</div>
+</div>
+</ion-content>
+
+<ion-tabs class="tabs">
+  <ion-tab-bar slot="top" class="tab_bar">
+    <ion-tab-button tab="inicio" class="tab_button">
+      <ion-icon name="card-outline"></ion-icon>
+      <ion-label>Corriente</ion-label>
+      <!-- <ion-badge>6</ion-badge> -->
+    </ion-tab-button>
+
+    <ion-tab-button tab="add" class="tab_button">
+      <ion-icon name="wallet-outline"></ion-icon>
+      <ion-label>Ahorros</ion-label>
+    </ion-tab-button>
+
+   
+  </ion-tab-bar>
+</ion-tabs>

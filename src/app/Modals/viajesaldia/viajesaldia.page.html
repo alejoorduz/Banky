@@ -1,0 +1,40 @@
+<ion-header class="header">
+  <ion-toolbar>
+    <ion-title class="tittle">Viajes del dia {{dia }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<head>
+  <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">
+  <script src="//code.ionicframework.com/nightly/js/ionic.bundle.js"></script>
+</head>
+
+<ion-content>
+  <div class="botones">
+  <button class="bot" (click)="back()"> Volver </button>
+  <!--<button class="bot" (click)="consultarviajes()"> Ver viajes </button>-->
+  </div>
+
+  <div class="container" [hidden]="cancelado">
+    <label class="etiqueta">Total dia : {{ this.producido | currency:'':symbol: '1.0-2' }} pesos</label>
+  </div>
+
+  <div class="row"> 
+    <div class="colid">Viaje #</div>
+    <div class="colcarro">Carro #</div>
+    <div class="colfecha">Fecha</div>
+    <div class="colsalida">Salida</div>
+    <div class="colentrada">Entrada</div>
+    <div class="colduracion">Tiempo</div>
+    <div class="coltotal">Total</div>
+  </div>
+  <div class="row" *ngFor="let viajes of arrayColeccionTareas">
+    <div class="colids">{{viajes.data.id}}</div>
+    <div class="colcarros">{{viajes.data.carro}}</div>
+    <div class="colfechas">{{viajes.data.fecha}}</div>
+    <div class="colsalidas">{{viajes.data.salio}}</div>
+    <div class="colentradas">{{viajes.data.entro}}</div>
+    <div class="colduracions">{{viajes.data.tiempo}} min</div>
+    <div class="coltotals">$ {{viajes.data.plata}}</div>
+  </div>
+
+</ion-content>
