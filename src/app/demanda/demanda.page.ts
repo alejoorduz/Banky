@@ -27,6 +27,8 @@ export class DemandaPage implements OnInit {
 };
 
   name: any 
+  saldo: any;
+  cuenta: any;
 
   total:number;
   public grantotal;
@@ -68,13 +70,14 @@ export class DemandaPage implements OnInit {
       }
        this.name = this.user_info.data.displayName;
       let email = this.user_info.data.email;
-      let saldo = this.user_info.data.saldo;
+      this.saldo = this.user_info.data.saldo_ahorros;
+      this.cuenta = this.user_info.data.cuenta_ahorros;
       console.log("nombre: "  + this.name)
       console.log("email: "  + email);
-      console.log("saldo: "  + saldo)
+      console.log("saldo: "  + this.saldo)
+      console.log("cuenta: "  + this.cuenta)
   });
   }
-
 
 //-----------------------------------------------------------------------
 

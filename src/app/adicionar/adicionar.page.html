@@ -1,33 +1,35 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Crear Publicacion</ion-title>
+    <ion-title>Generar Codigo QR</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-item>
-    <ion-label position="floating">Publicar oferta </ion-label>
-    <ion-input [(ngModel)]="publicacion.resumen"></ion-input>
+    <ion-label type="number" position="floating">Cantidad</ion-label>
+    <ion-input [(ngModel)]="cantidad"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label position="floating">Costo en Lukakumens</ion-label>
-    <ion-input [(ngModel)]="publicacion.costo"></ion-input>
+    <ion-label position="floating">Tipo de cuenta (corriente/ahorros)</ion-label>
+    <ion-input [(ngModel)]="tipo"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label position="floating">Unidad (hora,taller,dia,etc)</ion-label>
-    <ion-input [(ngModel)]="publicacion.unidad"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Categoria (lista desplegable)</ion-label>
-    <ion-input [(ngModel)]="publicacion.categoria"></ion-input>
+    <ion-label position="floating">Razon</ion-label>
+    <ion-input [(ngModel)]="razon"></ion-input>
   </ion-item>
 
-  <ion-item>
-    <ion-label position="floating">Observaciones</ion-label>
-    <ion-input [(ngModel)]="publicacion.observaciones"></ion-input>
-  </ion-item>
 
+  <button ion-button full icon-left (click)="generateCode()"><ion-icon name="barcode"></ion-icon>Create Code</button>
   
 
-  <ion-button (click)="insertar()" type="submit">Añadir tarea</ion-button>
+  <ion-card *ngIf="this.createdCode">
+    <ngx-qrcode [qrc-value]="this.createdCode"></ngx-qrcode>
+    <ion-card-content>
+      <p>Value: {{ createdCode }}</p>
+    </ion-card-content>
+  </ion-card>
+
+
+
+  <!-- <ion-button (click)="insertar()" type="submit">Añadir tarea</ion-button> -->
 </ion-content>

@@ -1,6 +1,6 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { userInfo } from 'os';
+//import { userInfo } from 'os';
 import { Observable } from "rxjs";
 import { AuthService } from '../auth.service';
 import { User } from "../user.interface";
@@ -8,6 +8,8 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore,AngularFirestoreDocument } from "@angular/fire/firestore";
 import * as $ from 'jquery'
 import { FirestoreService } from "../firestore.service";
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+
 
 
 @Component({
@@ -19,7 +21,12 @@ import { FirestoreService } from "../firestore.service";
 @Injectable()
 export class TabsPage implements OnInit {
   
-  WeatherData:any;
+  lat;
+  long;
+  WeatherData:any = {
+    main : {},
+    isDay: true
+  };
   day_mood: string;
   url;
 
@@ -30,27 +37,41 @@ export class TabsPage implements OnInit {
 
   name: any 
 
-  constructor(private fbs: FirestoreService ,private authSvc: AuthService, public router: Router, public afAuth:AngularFireAuth, private afs: AngularFirestore) {
+  constructor(private geolocation: Geolocation, private fbs: FirestoreService ,private authSvc: AuthService, public router: Router, public afAuth:AngularFireAuth, private afs: AngularFirestore) {
 
    }
 
    ionViewDidEnter(){
     this.getuseruid();
+    this.getLocation();
     console.log("bienvenido: ")
   }
   
 
   ngOnInit() {
-    this.WeatherData = {
-      main : {},
-      isDay: true
-    };
-    this.getWeatherData();
     console.log(this.WeatherData);
   }
 
+  getLocation(){
+    this.geolocation.getCurrentPosition().then((resp) => {
+       this.lat = resp.coords.latitude;
+       this.long = resp.coords.longitude;
+       console.log("lat: " + this.lat + "   long: " + this.long)
+       this.getWeatherData();
+     }).catch((error) => {
+       console.log('Error getting location', error);
+     });
+     
+     let watch = this.geolocation.watchPosition();
+     watch.subscribe((data) => {
+      // data can be a set of coordinates, or an error (if an error occurred).
+      // data.coords.latitude
+      // data.coords.longitude
+     });
+  }
+
   getWeatherData(){ 
-    fetch('https://api.openweathermap.org/data/2.5/weather?lat=4.709458&lon=-74.049185&appid=7985db256b85b778e9af4d7ea225aaeb')
+    fetch('https://api.openweathermap.org/data/2.5/weather?lat='+this.lat+'&lon='+this.long+'&appid=7985db256b85b778e9af4d7ea225aaeb')
     .then(response=>response.json())
     .then(data=>{this.setWeatherData(data);})
 

@@ -5,7 +5,7 @@ import { dismiss } from '@ionic/core/dist/types/utils/overlays';
 //import { time } from 'console';
 import { AngularFirestore } from "@angular/fire/firestore";
 import { FirestoreService } from '../../firestore.service';
-import { Carro1 } from '../../carro1';
+
 import { AlertController } from '@ionic/angular';
 import * as moment from 'moment';
 import { identifierModuleUrl } from '@angular/compiler';
@@ -26,22 +26,6 @@ const BLE_CHARACTERISTIC = "ffe1";
 })
 export class ActiveCarModalPage implements OnInit {
 
-  document: any = {
-    id: "",
-    data: {} as Carro1
-  };
-
-  arrayColeccionTareas: any = [{
-    id: "",
-    data: {} as Carro1
-   }];
-
-  idTareaSelec: string;
-
-  editarcarro: Carro1;
-  
-  statusMessage: string;
-  public cancelado = false;
 
   @Input() uuid;
   @Input() id; 
@@ -93,64 +77,10 @@ export class ActiveCarModalPage implements OnInit {
     this.comenzar();  
   }
 
-  connected(uuid,id){   
-      document.getElementById('tiempo').textContent = "Comenzando viaje ";
-      document.getElementById('tiempomsj').textContent = "¡Asegúrate de tener el carro cerca y el Bluetooth encendido!"; // Conectando:¡Asegúrate de tener el carro cerca!
-      document.getElementById('producido').textContent = "Conectando:";
-      document.getElementById('producidomsj').textContent = "Si el carro esta cerca y no conecta vuelve atrás e intenta nuevamente";
-      this.spinner = false;
-      this.boton=true;
-    (<any>window).ble.autoConnect(uuid, device => {
-      document.getElementById('tiempo').textContent = "Conectando... ";
-      this.BleWrite(uuid);
-      setTimeout(() => {
-        this.Disconnect(uuid);
-       }, 350)
-    }, error => {
-      console.log('Disconnected', error);
-      this.cancelado = false;
-      document.getElementById('tiempo').textContent = "Error";
-      document.getElementById('tiempomsj').textContent = "Asegurate que el carro esta cerca";
-    });
-    }
+
   
-  disconnect(uuid){
-    (<any>window).ble.autoConnect(uuid, device => {
-      this.setStatus('Enviando comando...');
-     // console.log('Connected', device);
-      this.disconectwrite(uuid);
-      setTimeout(() => {
-        this.Disconnect(uuid);
-       }, 350)
-    }, error => {
-      console.log('Disconnected', error);
-      this.cancelado = false;
-      this.setStatus('Error: Asegurate que el carro este cerca!');
-    });
-    }
-  
-    disconectwrite(uuid) {
-      var data = new Uint8Array(1);
-      data[0] = 0x32 ;
-      this.ble.write(
-              uuid,
-              BLE_SERVICE,
-              BLE_CHARACTERISTIC,
-              data.buffer
-          )
-          .then(
-              data => {
-                  debugger;   
-                  console.log(data);
-                  this.setStatus('Comando Enviado!');
-              },
-              err => {
-                  console.log(err);
-                  this.setStatus('Error: Intenta de nuevo');
-              }
-          );     
-    }
-    
+
+ 
     BleWrite(uuid) {
         var data = new Uint8Array(1);
         data[0] = 0x31;
@@ -182,15 +112,7 @@ export class ActiveCarModalPage implements OnInit {
             );     
     }
   
-    Disconnect(uuid){
-      this.ble.disconnect(uuid)
-      .then(data => {
-      console.log("disconnected good");
-      this.cancelado = false;
-      this.setStatus('¡Listo!');
-      
-  });
-    }
+  
   
   comenzar(){
     this.boton_comenzar = true;
@@ -234,49 +156,8 @@ export class ActiveCarModalPage implements OnInit {
 
   
     
-  modificarviajefin(minint, totalAmount, ti, tf, out,) {
-    console.log("entre acay y el tipo es: " + typeof(ti))
-    var carro = {
-      id: this.id,
-      uuid: this.uuid,
-      marca: this.marca,
-      color: this.color,
-      viajes: this.viajes,
-      tiempo: minint,
-      producido: totalAmount,
-      out: out
-    }
-    var viaje = {
-      viaje_num: this.viajes,
-      salio: ti,
-      entro: tf
-    }
-    this.firestoreService.actualizar("carros/", "carro"+this.id, carro).then(() => {
-      // Actualizar la lista completa
-      this.obtenerListaTareas();
-      // Limpiar datos de pantalla
-      this.editarcarro = {} as Carro1;
-    })
-    this.firestoreService.actualizar("carros/carro"+this.id+"/viajes", "/viaje"+this.viajes, viaje).then(() => {
-      // Actualizar la lista completa
-      this.obtenerListaTareas();
-      // Limpiar datos de pantalla
-      this.editarcarro = {} as Carro1;
-    })
-  }
-  
-  obtenerListaTareas(){
-    this.firestoreService.consultar("carros").subscribe((resultadoConsultaTareas) => {
-      this.arrayColeccionTareas = [];
-     //console.log(this.arrayColeccionTareas)
-      resultadoConsultaTareas.forEach((datosTarea: any) => {
-        this.arrayColeccionTareas.push({
-          id: datosTarea.payload.doc.id,
-          data: datosTarea.payload.doc.data()
-        });
-      })
-    });
-  }
+ 
+
   
   BleRead(uuid){
     // read data from a characteristic, do something with output data

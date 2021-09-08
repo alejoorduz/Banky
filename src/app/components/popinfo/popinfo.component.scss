@@ -4,6 +4,20 @@
 }
 
 .label{
-    width: 90%;
-    background-color: red;
+    width: 200px;
+    height: 70px;
+    border: solid 1px black;
+    //text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   //background-color: red;
+}
+.p{
+    width: 100%;
+   // background-color: blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from "@ionic/angular";
 import { ModalInfoPage } from '../modal-info/modal-info.page';
 //import { Carro } from "../../models/carros";
-import { Carro1 } from '../../carro1';
+
 import { AngularFirestore } from "@angular/fire/firestore";
 import { FirestoreService } from '../../firestore.service';
 import { IonicModule } from '@ionic/angular';
@@ -27,15 +27,6 @@ export class ModalPage implements OnInit {
   @Input() observaciones;
   
 
-  arrayColeccionTareas: any = [{
-    id: "",
-    data: {} as Carro1
-   }];
-
-   arrayordenado: any = [{
-    id: "",
-    data: {} as Carro1
-   }];
 
   constructor( private modalCtrl: ModalController, private firestoreService: FirestoreService) { }
   

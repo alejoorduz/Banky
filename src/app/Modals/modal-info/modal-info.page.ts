@@ -5,7 +5,7 @@ import { dismiss } from '@ionic/core/dist/types/utils/overlays';
 //import { time } from 'console';
 import { AngularFirestore } from "@angular/fire/firestore";
 import { FirestoreService } from '../../firestore.service';
-import { Carro1 } from '../../carro1';
+
 import { AlertController } from '@ionic/angular';
 import { ActiveCarModalPage } from '../active-car-modal/active-car-modal.page';
 import { DesactivatePage } from '../../Modals/desactivate/desactivate.page';
@@ -28,19 +28,8 @@ const BLE_CHARACTERISTIC = "ffe1";
 })
 export class ModalInfoPage implements OnInit {
 
-  document: any = {
-    id: "",
-    data: {} 
-  };
 
-  arrayColeccionTareas: any = [{
-    id: "",
-    data: {} as Carro1
-   }];
 
-  idTareaSelec: string;
-
-  editarcarro: Carro1;
   
   statusMessage: string;
   public cancelado = false;
@@ -61,11 +50,6 @@ export class ModalInfoPage implements OnInit {
   public segundofinal;
 
  
-
-   arrayordenado: any = [{
-    id: "",
-    data: {} as Carro1
-   }];
 
   constructor( private modalCtrl: ModalController, private firestoreService: FirestoreService) { }
   

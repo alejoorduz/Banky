@@ -10,6 +10,8 @@ import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ModalInfoPage } from '../Modals/modal-info/modal-info.page';
 import { AngularFireAuth } from "@angular/fire/auth";
+
+
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.page.html',
@@ -65,8 +67,8 @@ export class AdminPage implements OnInit {
       }
        this.name = this.user_info.data.displayName;
       let email = this.user_info.data.email;
-      this.saldo = this.user_info.data.saldo;
-      this.cuenta = this.user_info.data.cuenta;
+      this.saldo = this.user_info.data.saldo_corriente;
+      this.cuenta = this.user_info.data.cuenta_corriente;
       console.log("nombre: "  + this.name)
       console.log("email: "  + email);
       console.log("saldo: "  + this.saldo)

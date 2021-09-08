@@ -8,7 +8,7 @@ import { AngularFirestore } from "@angular/fire/firestore";
 import { FirestoreService } from '../firestore.service';
 import { IonicModule } from '@ionic/angular';
 import { Storage } from "@ionic/storage";
-import { Carro1 } from '../carro1';
+
 import { ActiveCarModalPageRoutingModule } from '../Modals/active-car-modal/active-car-modal-routing.module';
 import { ViajesaldiaPage } from '../Modals/viajesaldia/viajesaldia.page';
 import { AuthService } from '../auth.service';
@@ -35,15 +35,8 @@ export class DetailsPage implements OnInit{
   //public idviaje;
   public producido;
 
-  arrayColeccionTareas: any = [{
-    id: "",
-    data: {} as Carro1
-   }];
 
-   arrayordenado: any = [{
-    id: "",
-    data: {} as Carro1
-   }];
+  
 
   constructor(
     public route: ActivatedRoute, 
@@ -70,29 +63,7 @@ async onReset(email){
 }
    
     
-  consultarviajes(){
-    this.firestoreService.consultar("bd").subscribe((resultadoConsultaTareas) => {
-      this.arrayColeccionTareas = [];
-      resultadoConsultaTareas.forEach((datosTarea: any) => {
-        this.arrayColeccionTareas.push({
-          id: datosTarea.payload.doc.id,
-          data: datosTarea.payload.doc.data()
-        });
-
-      }) 
-      
-      // this.arrayordenado = this.arrayColeccionTareas.sort((a,b)=> a.data.id-b.data.id);
-      // console.log("EL ARRAY ES: " + this.arrayColeccionTareas)
-      // this.producido = this.arrayColeccionTareas.reduce(function (r, a) {
-      //   console.log(a.data.plata) 
-      //   return r + a.data.plata;
-      //   }, 0);
-      // console.log(this.producido) 
-
-
-      //this.firestoreService.update("carros","/carro"+this.id,{"producido": this.producido})
-    });   
-  }
+ 
 
  
 

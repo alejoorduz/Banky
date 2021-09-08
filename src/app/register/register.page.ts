@@ -35,10 +35,13 @@ async onRegister(email, password,nombre,apellido){
 }
 
 initialize_user(uid){
-  let account = Math.floor(Math.random()*(10000000000-1000000000+1)+1000000000);
+  let cCorriente = Math.floor(Math.random()*(10000000000-1000000000+1)+1000000000);
+  let cAhorros = cCorriente + 1;
   console.log("usuario inicializado correctamente")
-  this.fbs.update("user", uid , { saldo: 1000000 });
-  this.fbs.update("user", uid , { cuenta: account });
+  this.fbs.update("user", uid , { cuenta_corriente: cCorriente });
+  this.fbs.update("user", uid , { cuenta_ahorros: cAhorros });
+  this.fbs.update("user", uid , { saldo_corriente: 1000000 });
+  this.fbs.update("user", uid , { saldo_ahorros: 1500000 });
 }
 
 redirectUser(isverified:boolean){

@@ -7,6 +7,8 @@ import { User } from "../user.interface";
 import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase/app';
 import { Router } from '@angular/router';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
 @Component({
   selector: 'app-adicionardemanda',
@@ -14,64 +16,115 @@ import { Router } from '@angular/router';
   styleUrls: ['./adicionardemanda.page.scss'],
 })
 export class AdicionardemandaPage implements OnInit {
-
-  publicacion: publicacion;
-
-  document: any = {
+  user_saldo_paga: any = {
     id: "",
-    data: {} 
-  };
+    data: {}
+};
+user_saldo_recibe: any = {
+  id: "",
+  data: {}
+};
+  uid_paga:any;
+  uid_recibe:any;
+  nombre:any;
+  tipo:any;// = "corriente"
+  cuenta:any;
+  monto:number;//  = 50000
+  razon:any;
+  scannedCode = null;
+  saldo_actual_paga: any;
+  saldo_nuevo_paga:any;
+  saldo_actual_recibe: any;
+  saldo_nuevo_recibe: any;
 
-  public parseado;
-  public idpub;
 
-
-  constructor(private firestoreService: FirestoreService,private afAuth: AngularFireAuth, public router: Router) { 
-    this.publicacion = {} as publicacion;
+  constructor(public barcodeScanner: BarcodeScanner, private fbs: FirestoreService,private afAuth: AngularFireAuth, public router: Router) { 
+    
   }
+
+  ionViewDidEnter(){
+    this.getuseruid();
+    console.log("bienvenido: ")
+  } 
+  async getuseruid(){
+    this.uid_paga = await (await this.afAuth.currentUser).uid
+    console.log("uid del que paga: " + this.uid_paga)
+    //this.getName(uid);
+  }
+
+  scanCode() {
+    this.barcodeScanner.scan().then(barcodeData => {
+      this.scannedCode = barcodeData.text;
+      this.dividirString(this.scannedCode,"/");
+    }, (err) => {
+        console.log('Error: ', err);
+    });
+  }
+
+   dividirString(cadenaADividir,separador) {
+    var arrayDeCadenas = cadenaADividir.split(separador);
+    this.nombre = arrayDeCadenas[0];
+    this.uid_recibe = arrayDeCadenas[1];
+    this.tipo = arrayDeCadenas[2];
+    this.monto = parseInt(arrayDeCadenas[3]) ;
+    this.razon = arrayDeCadenas[4];
+    //document.write('<p>el nombre es : "' + this.nombre + '"' +'<br>el uid es : "' + this.uid_recibe + '"' 
+    //+ '<br>la cuenta es : "' + this.tipo + '"' + '<br>el monto es : "' + this.monto + '"' + '<br>el tipo de monto es : "' + typeof(this.monto ) 
+    //+ '"' + '<br>la razon es es : "' + this.razon + '"</p>');
+ }
+
+  consultar_saldos(){
+    console.log("info de pago: " + this.scannedCode)
+    console.log("uid paga: " + this.uid_paga + "  uid recibe: " + this.uid_recibe)
+    //document.write("<p>uid paga: " + this.uid_paga + "  uid recibe: " + this.uid_recibe);
+  //Restale la plata al que la envia
+  this.fbs.consultarPorId("user/", this.uid_paga).subscribe((resultado) => {
+    if (resultado.payload.data() != null) {
+      let saldo = resultado.payload.data();
+        this.user_saldo_paga.id = resultado.payload.id;
+        this.user_saldo_paga.data = resultado.payload.data();
+     }
+      this.saldo_actual_paga = this.user_saldo_paga.data.saldo_corriente;
+      console.log("saldo atual que paga : "  + this.saldo_actual_paga)
+     this.saldo_nuevo_paga = this.saldo_actual_paga - this.monto;
+     console.log("monto nuevo restao al que paga: " + this.saldo_nuevo_paga)
+    });
+
+    this.fbs.consultarPorId("user/", this.uid_recibe).subscribe((resultado) => {
+      if (resultado.payload.data() != null) {
+        let saldo = resultado.payload.data();
+          this.user_saldo_recibe.id = resultado.payload.id;
+          this.user_saldo_recibe.data = resultado.payload.data();
+       }      
+        this.saldo_actual_recibe = this.user_saldo_recibe.data.saldo_corriente;
+        console.log("saldo atual que recibe : "  + typeof(this.saldo_actual_recibe) )
+      
+       this.saldo_nuevo_recibe = this.saldo_actual_recibe + this.monto;
+       console.log("monto nuevo restao al que recibe: " + this.saldo_nuevo_recibe)
+      });
+
+ setTimeout(()=>{
+   this.make_transfer();
+ },1000)
+  
+  }
+
+  make_transfer(){
+    this.fbs.update("user", this.uid_paga , { saldo_corriente: this.saldo_nuevo_paga });
+    this.fbs.update("user", this.uid_recibe, { saldo_corriente: this.saldo_nuevo_recibe });
+  }
+
+  guardar_movimiento(){}
+
+  back(){
+   // console.log("adicionemos")
+    this.router.navigate(["/tabs"])
+  }
+
 
   ngOnInit() {
-    this.consultarpub();
-    //console.log("comenzamos"+this.resumen)
+   
   }
 
-  consultarpub(){
-    this.firestoreService.consultarPorId("totales/","total_public_demanda").subscribe((resultado) => {
-      if(resultado.payload.data() != null) {
-        this.document.id = resultado.payload.id
-        this.document.data = resultado.payload.data();
-        // Como ejemplo, mostrar el título de la tarea en consola
-        console.log("hola" + this.document.data.id);
-      }
-      this.parseado = this.document.data.total_pub;
-      this.idpub = parseInt(this.parseado);
-      console.log("EL ID DEL VIAJE ES: " + this.idpub)
-      console.log("EL TIPO DEL VIAJE ES: " + typeof(this.idpub))
-        return this.idpub;
-     // this.firestoreService.update("carros","/carro"+this.id,{"producido": this.producido})
-    });
-  this.idpub++;
-  }
-
-  insertar() {
-    console.log("idpub= " + this.idpub++)
-    var user = firebase.auth().currentUser;
-    console.log("this user is: " + user)
-    if (user != null) {
-      // $scope.user = {
-      //   name: user.displayName,
-      //   email: user.email,
-      // }
-    }
-    this.firestoreService.insertar("totales","total_public_demanda", {total_pub: this.idpub++})
-    this.firestoreService.insertar("publicaciones_demanda","publicacion"+this.idpub, {nombre: user.displayName});
-    this.firestoreService.update("publicaciones_demanda","publicacion"+this.idpub, {email: user.email})
-    this.firestoreService.update("publicaciones_demanda","publicacion"+this.idpub, {resumen: this.publicacion.resumen})
-    this.firestoreService.update("publicaciones_demanda","publicacion"+this.idpub, {costo: this.publicacion.costo})
-    this.firestoreService.update("publicaciones_demanda","publicacion"+this.idpub, {unidad: this.publicacion.unidad})
-    this.firestoreService.update("publicaciones_demanda","publicacion"+this.idpub, {categoria: this.publicacion.categoria})
-    this.firestoreService.update("publicaciones_demanda","publicacion"+this.idpub, {observaciones: this.publicacion.observaciones})
-    this.router.navigate(["/tabs/add"]);
-  };
   
 };

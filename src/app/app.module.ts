@@ -8,13 +8,17 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { ViajesaldiaPageModule} from './Modals/viajesaldia/viajesaldia.module';
 
+import { ViajesaldiaPageModule} from './Modals/viajesaldia/viajesaldia.module';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+
+//import { BarcodeScanner } from "@ionic-native/barcode-scanner";
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 //import { environment } from "../environments/environment.prod";
 import { environment } from '../environments/environment';
@@ -29,7 +33,8 @@ import { ViajesaldiaPage } from './Modals/viajesaldia/viajesaldia.page';
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    BrowserModule, 
+    BrowserModule,
+    NgxQRCodeModule, 
     IonicModule.forRoot(), 
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -46,9 +51,11 @@ import { ViajesaldiaPage } from './Modals/viajesaldia/viajesaldia.page';
   ],
   providers: [
     BLE,
+    Geolocation,
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    BarcodeScanner,
   ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]

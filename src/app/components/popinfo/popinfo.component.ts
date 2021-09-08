@@ -14,10 +14,10 @@ export class PopinfoComponent implements OnInit {
   ngOnInit() {}
 
 
-  navigate(){
+  navigate(route: string){
     
     console.log("navegando ando")
-    //this.router.navigate(['adicionar']);
+    this.router.navigate([route]);
   }
 
 }

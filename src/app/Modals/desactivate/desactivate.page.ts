@@ -5,7 +5,7 @@ import { dismiss } from '@ionic/core/dist/types/utils/overlays';
 //import { time } from 'console';
 import { AngularFirestore } from "@angular/fire/firestore";
 import { FirestoreService } from '../../firestore.service';
-import { Carro1 } from '../../carro1';
+
 import { AlertController } from '@ionic/angular';
 import * as moment from 'moment';
 import { identifierModuleUrl } from '@angular/compiler';
@@ -33,19 +33,12 @@ export class DesactivatePage implements OnInit {
   peripheral: any = {};
   public dataFromDevice: any;
 
-  document: any = {
-    id: "",
-    data: {} as Carro1
-  };
+ 
 
-  arrayColeccionTareas: any = [{
-    id: "",
-    data: {} as Carro1
-   }];
+  
 
   idTareaSelec: string;
 
-  editarcarro: Carro1;
   
   statusMessage: string;
   public cancelado = false;
@@ -234,49 +227,9 @@ export class DesactivatePage implements OnInit {
 
   }
   
-  modificarviajefin(minint, totalAmount, ti, tf, out,) {
-    console.log("entre acay y el tipo es: " + typeof(ti))
-    var carro = {
-      id: this.id,
-      uuid: this.uuid,
-      marca: this.marca,
-      color: this.color,
-      viajes: this.viajes,
-      tiempo: minint,
-      producido: totalAmount,
-      out: out
-    }
-    var viaje = {
-      viaje_num: this.viajes,
-      salio: ti,
-      entro: tf
-    }
-    this.firestoreService.actualizar("carros/", "carro"+this.id, carro).then(() => {
-      // Actualizar la lista completa
-      this.obtenerListaTareas();
-      // Limpiar datos de pantalla
-      this.editarcarro = {} as Carro1;
-    })
-    this.firestoreService.actualizar("carros/carro"+this.id+"/viajes", "/viaje"+this.viajes, viaje).then(() => {
-      // Actualizar la lista completa
-      this.obtenerListaTareas();
-      // Limpiar datos de pantalla
-      this.editarcarro = {} as Carro1;
-    })
-  }
+ 
   
-  obtenerListaTareas(){
-    this.firestoreService.consultar("carros").subscribe((resultadoConsultaTareas) => {
-      this.arrayColeccionTareas = [];
-     //console.log(this.arrayColeccionTareas)
-      resultadoConsultaTareas.forEach((datosTarea: any) => {
-        this.arrayColeccionTareas.push({
-          id: datosTarea.payload.doc.id,
-          data: datosTarea.payload.doc.data()
-        });
-      })
-    });
-  }
+
   
   setStatus(message) {
     console.log(message);

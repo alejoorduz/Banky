@@ -1,13 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from "@angular/fire/firestore";
 import { FirestoreService } from '../firestore.service';
-import { Carro1 } from '../carro1';
+
 import { publicacion } from '../publicacion';
 import { IonicModule } from '@ionic/angular';
 import { User } from "../user.interface";
 import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase/app';
 import { Router } from '@angular/router';
+
+//import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
 @Component({
   selector: 'app-adicionar',
@@ -16,63 +20,75 @@ import { Router } from '@angular/router';
 })
 export class AdicionarPage implements OnInit {
 
-  publicacion: publicacion;
-
-  document: any = {
+  user_info: any = {
     id: "",
-    data: {} 
+    data: {}
   };
+  name:any;
+  qrData : any;
+  createdCode : any;
+  scannedCode = null;
+  uid:any;
+  cantidad: number;
+  razon;
+  tipo;
+ 
+  constructor(public barcodeScanner: BarcodeScanner, private fbs: FirestoreService,private afAuth: AngularFireAuth, public router:Router) { 
+     }
 
-  public parseado;
-  public idpub;
+     ionViewDidEnter(){
+      this.getuseruid();
+      console.log("bienvenido: ")
+    }
 
-
-  constructor(private firestoreService: FirestoreService,private afAuth: AngularFireAuth, public router:Router) { 
-    this.publicacion = {} as publicacion;
+  createCode() {
+   // this.createdCode = this.qrData;
+    this.createdCode = this.name + " " + this.uid + " " + this.tipo + " " +  this.cantidad + " " + this.razon;
+    console.log(this.createdCode);
   }
+
+  generateCode() {
+    this.qrData = this.name + "/" + this.uid + "/" + this.tipo + "/" +  this.cantidad + "/" + this.razon;
+    this.barcodeScanner.encode(this.barcodeScanner.Encode.TEXT_TYPE, this.qrData).then(
+        res => {
+          alert(res);
+          this.qrData = res;
+        }, error => {
+          alert(error);
+        }
+    );
+}
+
+async getuseruid(){
+   this.uid = await (await this.afAuth.currentUser).uid
+ // console.log("uid " + uid)
+  this.getName(this.uid);
+}
+
+async getName(uid){
+  this.fbs.consultarPorId("user/", uid).subscribe((resultado) => {
+    if (resultado.payload.data() != null) {
+      //let name = resultado.payload.data();
+        this.user_info.id = resultado.payload.id;
+        this.user_info.data = resultado.payload.data();
+        // Como ejemplo, mostrar el título de la tarea en consola
+        //console.log("datos de viaje--> " + this.user_info.data.displayName);
+    }
+     this.name = this.user_info.data.displayName;
+    let email = this.user_info.data.email;
+    let saldo = this.user_info.data.saldo;
+    console.log("nombre: "  + this.name)
+    console.log("email: "  + email);
+     console.log("saldo: "  + saldo)
+});
+}
+
+
 
   ngOnInit() {
-    this.consultarpub();
-    //console.log("comenzamos"+this.resumen)
+       //console.log("comenzamos"+this.resumen)
   }
 
-  consultarpub(){
-    this.firestoreService.consultarPorId("totales/","total_public_oferta").subscribe((resultado) => {
-      if(resultado.payload.data() != null) {
-        this.document.id = resultado.payload.id
-        this.document.data = resultado.payload.data();
-        // Como ejemplo, mostrar el título de la tarea en consola
-        console.log("hola" + this.document.data.id);
-      }
-      this.parseado = this.document.data.total_pub;
-      this.idpub = parseInt(this.parseado);
-      console.log("EL ID DEL VIAJE ES: " + this.idpub)
-      console.log("EL TIPO DEL VIAJE ES: " + typeof(this.idpub))
-        return this.idpub;
-     // this.firestoreService.update("carros","/carro"+this.id,{"producido": this.producido})
-    });
-  this.idpub++;
-  }
 
-  insertar() {
- //console.log("idpub= " + this.idpub++)
-    var user = firebase.auth().currentUser;
-    console.log("this user is: " + user)
-    if (user != null) {
-      // $scope.user = {
-      //   name: user.displayName,
-      //   email: user.email,
-      // }
-    }
-    this.firestoreService.insertar("totales","total_public_oferta", {total_pub: this.idpub++})
-    this.firestoreService.insertar("publicaciones_oferta","publicacion"+this.idpub, {nombre: user.displayName});
-    this.firestoreService.update("publicaciones_oferta","publicacion"+this.idpub, {email: user.email})
-    this.firestoreService.update("publicaciones_oferta","publicacion"+this.idpub, {resumen: this.publicacion.resumen})
-    this.firestoreService.update("publicaciones_oferta","publicacion"+this.idpub, {costo: this.publicacion.costo})
-    this.firestoreService.update("publicaciones_oferta","publicacion"+this.idpub, {unidad: this.publicacion.unidad})
-    this.firestoreService.update("publicaciones_oferta","publicacion"+this.idpub, {categoria: this.publicacion.categoria})
-    this.firestoreService.update("publicaciones_oferta","publicacion"+this.idpub, {observaciones: this.publicacion.observaciones})
-    this.router.navigate(["/tabs"]);
-  }
 
 }
