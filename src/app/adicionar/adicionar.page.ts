@@ -1,15 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from "@angular/fire/firestore";
 import { FirestoreService } from '../firestore.service';
-
 import { publicacion } from '../publicacion';
 import { IonicModule } from '@ionic/angular';
 import { User } from "../user.interface";
 import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase/app';
 import { Router } from '@angular/router';
-
-//import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
@@ -48,6 +45,7 @@ export class AdicionarPage implements OnInit {
   }
 
   generateCode() {
+    console.log(this.name + "/" + this.uid + "/" + this.tipo + "/" +  this.cantidad + "/" + this.razon)
     this.qrData = this.name + "/" + this.uid + "/" + this.tipo + "/" +  this.cantidad + "/" + this.razon;
     this.barcodeScanner.encode(this.barcodeScanner.Encode.TEXT_TYPE, this.qrData).then(
         res => {

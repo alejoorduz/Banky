@@ -9,15 +9,16 @@ import { PopoverController } from '@ionic/angular';
 })
 export class PopinfoComponent implements OnInit {
 
-  constructor(public router: Router) { }
+  constructor(public router: Router, private pop: PopoverController) { }
 
   ngOnInit() {}
 
 
   navigate(route: string){
-    
-    console.log("navegando ando")
     this.router.navigate([route]);
+    this.pop.dismiss();
   }
+
+ 
 
 }

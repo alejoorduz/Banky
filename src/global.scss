@@ -26,38 +26,6 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 
-.my-custom-menu {
-    --width: 60%;
-    --background: white;
-    --color: #CBCBCB;
-    
-  }
-
-  .mymodal .modal-wrapper {
-    --background:transparent;
-    --max-height: 95%;
-    border: 5px solid black;
-  }
-
-  .mymodaldos .modal-wrapper {
-    --background:transparent;
-    --max-height: 100%;
-    border: 5px solid black;
-  }
-
-  .activecar .modal-wrapper {
-    --background:transparent;
-    --max-height: 10
-    0%;
-    border: 5px solid black;
-  }
-  
-  .desactivecar .modal-wrapper {
-    --background:transparent;
-    --max-height: 10
-    0%;
-    border: 5px solid black;
-  }
 
   .ion-color-transparent {
     --ion-color-base: var(--ion-color-transparent) !important;
@@ -68,33 +36,13 @@
     --ion-color-tint: var(--ion-color-transparent-tint) !important;
 }
 
-.menu{
-  --background-color: #c9e9fc;
-    color: #c9e9fc;
-    box-shadow: -8px 20px #409dc4;
-    --ion-background-color:#CBCBCB;
-    //--background: #CBCBCB;
-  }
-  
-
-.labelStyle{
-    --color: #409dc4;
-    --placeholder-color: #971e49;
-    background-color: white;
-    width: 250px;
-    //position: relative;
-    //left: 5%;
-  }
-
   .popover .popover-content {
-    background: #c9e9fc;
+    background: rgba(255, 255, 255, 1);
     color: black;
     padding: 10px;
     border: 2px solid black;
   }
 
-
-  
     .alerta .alert-wrapper {
       background: white;
       color: black;

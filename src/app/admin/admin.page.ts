@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Carro } from "../models/carros";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { FirestoreService } from '../firestore.service';
-import { ModalPage } from '../Modals/modal/modal.page';
 import { ModalController } from "@ionic/angular";
 import { PopoverController } from '@ionic/angular';
 import { PopinfoComponent } from '../components/popinfo/popinfo.component';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { ModalInfoPage } from '../Modals/modal-info/modal-info.page';
 import { AngularFireAuth } from "@angular/fire/auth";
 
 
@@ -88,42 +85,9 @@ export class AdminPage implements OnInit {
       component: PopinfoComponent,
       cssClass: 'popover',
       event: ev,
-      translucent: true
+      translucent: true,
     });
     return await popover.present();
   }
-
-  async abrirmodal(id,uuid,marca,color,viajes,fecha,tiempo,producido){
-    const modal = await this.modalCtrl.create({
-      component: ModalInfoPage,
-      cssClass: 'mymodaldos',
-      componentProps: {
-        uuid : uuid,
-        id: id,
-        marca: marca,
-        color: color,
-        viajes: viajes,
-        fecha: fecha, 
-        tiempo: tiempo,
-        producido: producido
-      }
-    });
-
-    modal.onDidDismiss()
-    .then((data) => {
-      const producido = data['data'];
-      console.log("viajes" + viajes)
-      console.log("viajes string" + JSON.stringify(viajes));
-      var id = viajes.id;
-      console.log("id" + id);
-      var numero_viajes = viajes.viajes;
-  });
-
-    return await modal.present();
-    
-  }
-
- 
-  
   
 }

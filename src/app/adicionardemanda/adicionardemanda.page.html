@@ -1,17 +1,24 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Escanear Codigo QR</ion-title>
+    <div class="tittle">Escanear Codigo QR</div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <button ion-button full icon-left (click)="scanCode()" color="secondary"><ion-icon name="qr-scanner"></ion-icon>Scan Code</button>
-  <ion-card *ngIf="scannedCode">
+  <div class="todo">
+   <div class="todo__boton--generar">
+  <button class="button" (click)="scanCode()">Escanear QR</button>
+  <button class="button" (click)="back()">Atrás</button>
+  </div>
+  <div class="todo__card">
+  <ion-card class="todo__card--card" *ngIf="scannedCode" >
     <ion-card-content>
-      Desea pagar a {{ this.nombre }} el monto de {{this.monto}} ?
+      ¿ Desea pagar a {{ this.nombre }} el monto de {{this.monto | currency}} por concepto de {{this.razon}} ?
     </ion-card-content>
   </ion-card>
-
-  <ion-button class="button" (click)="consultar_saldos()">Pagar</ion-button>
-  <ion-button class="button" (click)="back()">cancelar</ion-button>
+  </div>
+  <div class="todo_botones--pagar" *ngIf="scannedCode" >
+  <button class="button" id="boton_pagar" (click)="consultar_saldos()">Pagar</button>
+   </div>
+  </div>
 </ion-content>

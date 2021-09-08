@@ -8,9 +8,6 @@ import { AngularFirestore } from "@angular/fire/firestore";
 import { FirestoreService } from '../firestore.service';
 import { IonicModule } from '@ionic/angular';
 import { Storage } from "@ionic/storage";
-
-import { ActiveCarModalPageRoutingModule } from '../Modals/active-car-modal/active-car-modal-routing.module';
-import { ViajesaldiaPage } from '../Modals/viajesaldia/viajesaldia.page';
 import { AuthService } from '../auth.service';
 
 const BLE_SERVICE = "ffe0";
@@ -61,39 +58,11 @@ async onReset(email){
     console.log(error)
   }
 }
-   
-    
- 
-
- 
-
   back(){
     this.router.navigate(['admin']);
   }
 
-  async abrirmodal(dia,viajenum){
-    const modal = await this.modalCtrl.create({
-      component: ViajesaldiaPage,
-      cssClass: 'mymodal',
-      componentProps: {
-        dia: dia,
-        viajenum: viajenum    
-      }
-    });
-    modal.onDidDismiss()
-    .then((data) => {
-      const producido = data['data'];
-    
-      console.log("viajes" + producido)
-      console.log("viajes string" + JSON.stringify(producido));
-      var id = producido.producido;
-      console.log("id" + id);
-      var totaldia = producido.producido;
-  });
-    return await modal.present();
-  }
-
-  }    
+}
 
   
     

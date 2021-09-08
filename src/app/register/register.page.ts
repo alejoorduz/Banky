@@ -16,8 +16,8 @@ export class RegisterPage implements OnInit {
   ngOnInit() {
   }
 
-async onRegister(email, password,nombre,apellido){
-  console.log("registro-------------" + email.value + password.value + nombre.value + apellido.value)
+async onRegister(email, password,nombre){
+  console.log("registro-------------" + email.value + password.value + nombre.value)
   console.log(email, password)
   try {
     const user = await this.authsvc.register(email.value,password.value,nombre.value)

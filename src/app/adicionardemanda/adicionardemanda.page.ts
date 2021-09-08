@@ -9,6 +9,8 @@ import firebase from 'firebase/app';
 import { Router } from '@angular/router';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
+import { ToastController, AlertController } from '@ionic/angular';
+import  *  as $ from "jquery";
 
 @Component({
   selector: 'app-adicionardemanda',
@@ -38,22 +40,30 @@ user_saldo_recibe: any = {
   saldo_nuevo_recibe: any;
 
 
-  constructor(public barcodeScanner: BarcodeScanner, private fbs: FirestoreService,private afAuth: AngularFireAuth, public router: Router) { 
+  constructor(public barcodeScanner: BarcodeScanner, private fbs: FirestoreService,private afAuth: AngularFireAuth,private alertCtrl: AlertController, public router: Router) { 
     
+  }
+
+  ngOnInit(){
   }
 
   ionViewDidEnter(){
     this.getuseruid();
-    console.log("bienvenido: ")
+    console.log("inicio")
   } 
+
+
   async getuseruid(){
     this.uid_paga = await (await this.afAuth.currentUser).uid
     console.log("uid del que paga: " + this.uid_paga)
-    //this.getName(uid);
-  }
+    }
 
   scanCode() {
+    console.log("escaneandooo QR")
+    //this.dividirString("alejandro orduz/oiowuefhiowuehfiowuehfwiouh54/corriente/50000/deuda","/");
+    //this.scannedCode = true;
     this.barcodeScanner.scan().then(barcodeData => {
+      $("boton_pagar").prop('disabled', false);
       this.scannedCode = barcodeData.text;
       this.dividirString(this.scannedCode,"/");
     }, (err) => {
@@ -74,7 +84,7 @@ user_saldo_recibe: any = {
  }
 
   consultar_saldos(){
-    console.log("info de pago: " + this.scannedCode)
+      console.log("info de pago: " + this.scannedCode)
     console.log("uid paga: " + this.uid_paga + "  uid recibe: " + this.uid_recibe)
     //document.write("<p>uid paga: " + this.uid_paga + "  uid recibe: " + this.uid_recibe);
   //Restale la plata al que la envia
@@ -84,7 +94,11 @@ user_saldo_recibe: any = {
         this.user_saldo_paga.id = resultado.payload.id;
         this.user_saldo_paga.data = resultado.payload.data();
      }
+     if (this.tipo == "ahorros") {
+      this.saldo_actual_paga = this.user_saldo_paga.data.saldo_ahorros;
+     } if (this.tipo == "corriente") {
       this.saldo_actual_paga = this.user_saldo_paga.data.saldo_corriente;
+     }
       console.log("saldo atual que paga : "  + this.saldo_actual_paga)
      this.saldo_nuevo_paga = this.saldo_actual_paga - this.monto;
      console.log("monto nuevo restao al que paga: " + this.saldo_nuevo_paga)
@@ -95,11 +109,18 @@ user_saldo_recibe: any = {
         let saldo = resultado.payload.data();
           this.user_saldo_recibe.id = resultado.payload.id;
           this.user_saldo_recibe.data = resultado.payload.data();
-       }      
+       }
+       if (this.tipo == "ahorros") {
+        this.saldo_actual_paga = this.user_saldo_paga.data.saldo_ahorros;
+       } if (this.tipo == "corriente") {
+        this.saldo_actual_paga = this.user_saldo_paga.data.saldo_corriente;
+       }
         this.saldo_actual_recibe = this.user_saldo_recibe.data.saldo_corriente;
-        console.log("saldo atual que recibe : "  + typeof(this.saldo_actual_recibe) )
-      
-       this.saldo_nuevo_recibe = this.saldo_actual_recibe + this.monto;
+        console.log("saldo atual que recibe : "  + typeof(this.saldo_actual_recibe))
+       this.saldo_nuevo_recibe = this.saldo_actual_recibe + this.monto; 
+       //document.write("<p>saldo actual: " + this.saldo_actual_recibe + "  saldo nuevio: " + this.saldo_nuevo_recibe);
+       //document.write("<p>saldo actual tipo: " + typeof(this.saldo_actual_recibe)  + "  saldo nuevio: " + typeof(this.saldo_nuevo_recibe) );
+
        console.log("monto nuevo restao al que recibe: " + this.saldo_nuevo_recibe)
       });
 
@@ -110,8 +131,17 @@ user_saldo_recibe: any = {
   }
 
   make_transfer(){
-    this.fbs.update("user", this.uid_paga , { saldo_corriente: this.saldo_nuevo_paga });
-    this.fbs.update("user", this.uid_recibe, { saldo_corriente: this.saldo_nuevo_recibe });
+    $("boton_pagar").prop('disabled', true);
+    if (this.tipo == "ahorros") {
+      this.fbs.update("user", this.uid_paga , { saldo_ahorros: this.saldo_nuevo_paga });
+      this.fbs.update("user", this.uid_recibe, { saldo_ahorros: this.saldo_nuevo_recibe });
+     } if (this.tipo == "corriente") {
+      this.fbs.update("user", this.uid_paga , { saldo_corriente: this.saldo_nuevo_paga });
+      this.fbs.update("user", this.uid_recibe, { saldo_corriente: this.saldo_nuevo_recibe });
+     }
+    setTimeout(()=>{
+      this.presentAlert();
+    },500)
   }
 
   guardar_movimiento(){}
@@ -121,10 +151,20 @@ user_saldo_recibe: any = {
     this.router.navigate(["/tabs"])
   }
 
+  async presentAlert() {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Hecho!',
+      subHeader: 'Fue una trasnferencia exitosa',
+      message: 'Gracias por utilizar nuestros servicios',
+      buttons: ['OK']
+    });
 
-  ngOnInit() {
-   
+    await alert.present();
+
+    this.router.navigate(["/tabs"])
+    //console.log('onDidDismiss resolved with role', role);
   }
+}
 
-  
-};
+

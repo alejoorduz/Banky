@@ -8,6 +8,7 @@ import { Observable, of } from 'rxjs';
 
 import { relativeTimeRounding } from 'moment';
 import { switchMap } from "rxjs/operators";
+import { ToastController, AlertController } from '@ionic/angular';
 
 
 @Injectable({
@@ -17,7 +18,7 @@ export class AuthService {
   public user$: Observable<User>;
 
 
-  constructor(public afAuth:AngularFireAuth, private afs: AngularFirestore) {
+  constructor(public afAuth:AngularFireAuth,private alertCtrl: AlertController, private afs: AngularFirestore) {
 
     this.user$ = this.afAuth.authState.pipe(
       switchMap((user)=>{
@@ -28,6 +29,21 @@ export class AuthService {
       })
     );
    }
+
+   async presentAlert(error) {
+    const alert = await this.alertCtrl.create({
+      cssClass: 'my-custom-class',
+      header: 'Error',
+      message: error,
+      buttons: ['OK']
+    });
+
+    await alert.present();
+
+    const { role } = await alert.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
+  }
+
 
 
   async getCurrentUID(): Promise<void>{
@@ -45,6 +61,7 @@ export class AuthService {
     }
     catch(error){
       console.log("Error:",error)
+      this.presentAlert(error);
     }
   }
 
@@ -56,6 +73,7 @@ export class AuthService {
     }
     catch(error){
       console.log("Error:",error)
+      this.presentAlert(error);
     }
   } 
 
@@ -68,6 +86,7 @@ export class AuthService {
     }
     catch(error){
       console.log("Error:",error)
+      this.presentAlert(error);
     }
   }
 
@@ -77,6 +96,7 @@ export class AuthService {
     }
     catch(error){
       console.log("Error:",error)
+      this.presentAlert(error);
     }
   }
 
@@ -88,6 +108,7 @@ export class AuthService {
     }
     catch(error){
       console.log("Error:",error)
+      this.presentAlert(error);
     }
   }
 
@@ -120,6 +141,7 @@ export class AuthService {
     }
     catch(error){
       console.log("Error:",error)
+      this.presentAlert(error);
     }
   }
 

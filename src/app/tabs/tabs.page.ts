@@ -1,6 +1,5 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-//import { userInfo } from 'os';
 import { Observable } from "rxjs";
 import { AuthService } from '../auth.service';
 import { User } from "../user.interface";
@@ -9,8 +8,8 @@ import { AngularFirestore,AngularFirestoreDocument } from "@angular/fire/firesto
 import * as $ from 'jquery'
 import { FirestoreService } from "../firestore.service";
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-
-
+import { PopoverController } from '@ionic/angular';
+import { PopinfoComponent } from '../components/popinfo/popinfo.component';
 
 @Component({
   selector: 'app-tabs',
@@ -37,7 +36,7 @@ export class TabsPage implements OnInit {
 
   name: any 
 
-  constructor(private geolocation: Geolocation, private fbs: FirestoreService ,private authSvc: AuthService, public router: Router, public afAuth:AngularFireAuth, private afs: AngularFirestore) {
+  constructor(public popoverController: PopoverController,private geolocation: Geolocation, private fbs: FirestoreService ,private authSvc: AuthService, public router: Router, public afAuth:AngularFireAuth, private afs: AngularFirestore) {
 
    }
 
@@ -95,6 +94,22 @@ export class TabsPage implements OnInit {
     }
   }
 
+  open_options(){
+    console.log("abrir menu")
+    this.presentPopover("popover")
+     }
+
+     async presentPopover(ev: any) {
+      const popover = await this.popoverController.create({
+        component: PopinfoComponent,
+        cssClass: 'popover',
+        event: ev,
+        translucent: true
+      });      
+      return await popover.present();
+      const { role } = await popover.onDidDismiss();
+      console.log('onDidDismiss resolved with role', role);
+    }
 
 async getuseruid(){
   let uid = await (await this.afAuth.currentUser).uid

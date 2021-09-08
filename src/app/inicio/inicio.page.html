@@ -15,15 +15,17 @@
 
 <ion-content *ngIf="user$ | async as user">
 
-  <br>
-  <div class="texto">
-    <p>Gracias por registrarte!</p>
-  </div>
-  <div class="texto">
-    <p>-------------------------------</p>
-  </div>
-  <br>
+ 
 
+  <div class="parrafo">
+    <br>
+    <div class="texto">
+      <p>Gracias por registrarte!</p>
+    </div>
+    <div class="texto">
+      <p>-------------------------------</p>
+    </div>
+    <br>
   <div class="texto">
     <p>Te hemos enviado un correo de verificación a <strong>{{user.email}}</strong></p>
   </div>
@@ -33,21 +35,19 @@
     <p>Revisa tu correo electronico para confirmar tu cuenta (Puede estar en spam)</p>
   </div>
   <br>
+  </div>
   <div class="align"> 
-
   <ion-grid class="grid">
-
   <ion-row class="row">
-
   <ion-col class="column">
-    <ion-button type="submit" class="comerciales" (click)="sendemail()">
+    <button type="submit" class="boton" (click)="sendemail()">
       Reenviar correo
-    </ion-button>
+    </button>
   </ion-col>
   <ion-col class="column">
-    <ion-button  class="comerciales" routerLink="/ingresoadmin">
+    <button  class="boton" routerLink="/ingresoadmin">
       Volver a inicio
-    </ion-button>
+    </button>
   </ion-col>
 
   </ion-row>

@@ -7,7 +7,6 @@ const routes: Routes = [
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
-
   {
     path: 'ingresoadmin',
     loadChildren: () => import('./ingresoadmin/ingresoadmin.module').then( m => m.IngresoadminPageModule)
@@ -25,15 +24,7 @@ const routes: Routes = [
     path: 'inicio',
     loadChildren: () => import('./inicio/inicio.module').then( m => m.InicioPageModule)
   },
-  {
-    path: 'modal',
-    loadChildren: () => import('./Modals/modal/modal.module').then( m => m.ModalPageModule)
-  },
-  {
-    path: 'modal-info',
-    loadChildren: () => import('./Modals/modal-info/modal-info.module').then( m => m.ModalInfoPageModule)
-  },
-  {
+   {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then( m => m.AdminPageModule),
     canActivate:[AuthGuard],
@@ -44,19 +35,7 @@ const routes: Routes = [
     path: 'adicionar',
     loadChildren: () => import('./adicionar/adicionar.module').then( m => m.AdicionarPageModule)
   },
-  {
-    path: 'active-car-modal',
-    loadChildren: () => import('./Modals/active-car-modal/active-car-modal.module').then( m => m.ActiveCarModalPageModule)
-  },
-  {
-    path: 'desactivate',
-    loadChildren: () => import('./Modals/desactivate/desactivate.module').then( m => m.DesactivatePageModule)
-  },
-  {
-    path: 'viajesaldia',
-    loadChildren: () => import('./Modals/viajesaldia/viajesaldia.module').then( m => m.ViajesaldiaPageModule)
-  },
-  {
+   {
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
   },

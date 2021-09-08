@@ -17,22 +17,13 @@
 
 <ion-content>
   <form>
-
       <div class="div_email">
       <ion-item class="email">
-        <ion-label position="floating">Nombre</ion-label>
+        <ion-label position="floating">Nombre y Apellido</ion-label>
         <ion-input type="text" #nombre required></ion-input>
       </ion-item>
       </div>
-
-      <div class="div_email">
-        <ion-item class="email">
-          <ion-label position="floating">Apellido</ion-label>
-          <ion-input type="text" #apellido required></ion-input>
-        </ion-item>
-        </div>
-
-    <div class="div_email">
+    <div class="div_contra">
       <ion-item class="email">
         <ion-label position="floating">Email</ion-label>
         <ion-input type="text" #email required></ion-input>
@@ -55,9 +46,9 @@
       <div class="div_login">
     <ion-row>
       <ion-col>
-        <ion-button type="submit" class="bot_entrar" (click)="onRegister(email,password,nombre,apellido)">
+        <button type="submit" class="bot_entrar" (click)="onRegister(email,password,nombre)">
           Registrame
-        </ion-button>
+        </button>
       </ion-col>
     </ion-row>
 </div>

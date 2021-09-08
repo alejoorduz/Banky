@@ -12,27 +12,28 @@ page-home {
     
   }
 
-   .comerciales {
-    font-size: 30px;
+   .boton {
+     margin-top: 100px;
+    font-size: 10px;
     justify-content: center;
     display: flex;
     justify-items: center;
-    background-color: tomato;
-    width: 80%;
+    //--background-color: tomato;
+    background: rgb(124, 124, 124);
+    width: 100%;
     align-items: center;
-    height: 80%;
+    height: 40%;
     border: black;
     color: #666666;
     border-width: 1px;
     color: white;
     border-style: solid;
-
-     
     }   
 
 .align{
     display: flex;
-    justify-items: center;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
    // background-color: lightseagreen;
     width: 100%;
@@ -41,12 +42,15 @@ page-home {
 }
 
 .grid{
-    //background-color: lime;
-    height: 100%;
+   // background-color: lime;
+    height: 100px;
+    display: flex;
+   // flex-direction: column;
+    justify-content: center;
 }
 
 .column{
-    //background-color: pink;
+   // background-color: pink;
     display: flex;
     justify-content: center;
     width: 100%;
@@ -60,17 +64,26 @@ page-home {
     height: 15%;
 }
 
-  
   .texto{
-    font-size: 20px;
+    margin-top: 5px;
+    font-size: 90%;
     justify-content: center;
     display: flex;
-    justify-items: center;
     //background-color: lightblue;
-    width: 100%;
+    width: 60%;
     align-items: center;
     height: 25px;
-    color: #666666;
+    color: whitesmoke;
+  }
+
+  .parrafo{
+    //background-color: yellow;
+    width: 100%;
+    height: 30vh;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   #cabeza{
@@ -82,13 +95,9 @@ page-home {
   }
   
   .tittle{
-    color: #666666;
+    color: whitesmoke;
     font-size: 6vw;
     text-align: center;
-    //align-items: center;  //siempre van a ser del contenedor al igual que align-contect
-    //display: flex;
-   // background-color: #CBCBCB;
-   // font-family: 'Questrial';
   }
   
   .align-header{
@@ -113,14 +122,14 @@ page-home {
   
 
   .header{
-    background-color: #cbcbcb;
+    background-color: black;
     height: 50px;
   }
   
   
   
   ion-content {
-    --background: #DADADA; 
+    --background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(8,7,42,1) 75%, rgb(8, 10, 63) 100%);
     --ion-safe-area-top: 100px;
   }
   
