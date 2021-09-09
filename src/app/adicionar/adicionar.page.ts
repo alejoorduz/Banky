@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from "@angular/fire/firestore";
 import { FirestoreService } from '../firestore.service';
-import { publicacion } from '../publicacion';
 import { IonicModule } from '@ionic/angular';
-import { User } from "../user.interface";
 import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase/app';
 import { Router } from '@angular/router';
@@ -30,18 +28,11 @@ export class AdicionarPage implements OnInit {
   razon;
   tipo;
  
-  constructor(public barcodeScanner: BarcodeScanner, private fbs: FirestoreService,private afAuth: AngularFireAuth, public router:Router) { 
-     }
+  constructor(public barcodeScanner: BarcodeScanner, private fbs: FirestoreService,private afAuth: AngularFireAuth, public router:Router) { }
 
-     ionViewDidEnter(){
-      this.getuseruid();
-      console.log("bienvenido: ")
-    }
-
-  createCode() {
-   // this.createdCode = this.qrData;
-    this.createdCode = this.name + " " + this.uid + " " + this.tipo + " " +  this.cantidad + " " + this.razon;
-    console.log(this.createdCode);
+  ionViewDidEnter(){
+    this.getuseruid();
+    console.log("bienvenido: ")
   }
 
   generateCode() {
@@ -80,13 +71,7 @@ async getName(uid){
      console.log("saldo: "  + saldo)
 });
 }
-
-
-
   ngOnInit() {
-       //console.log("comenzamos"+this.resumen)
   }
-
-
 
 }

@@ -29,8 +29,6 @@ const routes: Routes = [
     loadChildren: () => import('./admin/admin.module').then( m => m.AdminPageModule),
     canActivate:[AuthGuard],
   },
-  
- 
   {
     path: 'adicionar',
     loadChildren: () => import('./adicionar/adicionar.module').then( m => m.AdicionarPageModule)
@@ -42,7 +40,7 @@ const routes: Routes = [
   {
     path: 'tabs',
     loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule),
-    // canActivate:[AuthGuard],
+     canActivate:[AuthGuard],
   },
   {
     path: 'demanda',

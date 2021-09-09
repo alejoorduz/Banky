@@ -60,8 +60,6 @@ user_saldo_recibe: any = {
 
   scanCode() {
     console.log("escaneandooo QR")
-    //this.dividirString("alejandro orduz/oiowuefhiowuehfiowuehfwiouh54/corriente/50000/deuda","/");
-    //this.scannedCode = true;
     this.barcodeScanner.scan().then(barcodeData => {
       $("boton_pagar").prop('disabled', false);
       this.scannedCode = barcodeData.text;
