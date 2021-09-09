@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { TabsPage } from './tabs.page';
+import { AdminPage } from './admin.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: TabsPage,
+    component: AdminPage,
     children: [
       {
         path: 'inicio',
         children: [
           {
             path: '',
-            loadChildren: () => import('../corriente/admin.module').then( m => m.AdminPageModule)
+            loadChildren: () => import('../verificacion/inicio.module').then( m => m.InicioPageModule)
           }
         ]
       },
@@ -22,19 +22,10 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('../ahorros/demanda.module').then( m => m.DemandaPageModule)
+            loadChildren: () => import('../generarQR/adicionar.module').then( m => m.AdicionarPageModule)
           }
         ]
       },
-      // {
-      //   path: 'profile',
-      //   children: [
-      //     {
-      //       path: '',
-      //       loadChildren: () => import('../home/home.module').then( m => m.HomePageModule)
-      //     }
-      //   ]
-      // },
       {
         path: '',
         redirectTo: 'inicio',
@@ -44,8 +35,10 @@ const routes: Routes = [
   }
 ];
 
+
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class TabsPageRoutingModule {}
+export class AdminPageRoutingModule {}
+
