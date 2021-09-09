@@ -41,7 +41,6 @@ user_saldo_recibe: any = {
 
 
   constructor(public barcodeScanner: BarcodeScanner, private fbs: FirestoreService,private afAuth: AngularFireAuth,private alertCtrl: AlertController, public router: Router) { 
-    
   }
 
   ngOnInit(){
@@ -82,10 +81,14 @@ user_saldo_recibe: any = {
  }
 
   consultar_saldos(){
+    $("boton_pagar").prop('disabled', true);
       console.log("info de pago: " + this.scannedCode)
     console.log("uid paga: " + this.uid_paga + "  uid recibe: " + this.uid_recibe)
     //document.write("<p>uid paga: " + this.uid_paga + "  uid recibe: " + this.uid_recibe);
   //Restale la plata al que la envia
+
+  //-----CONSULTAR DATOS DE EL QUE PAGA---------------------------------
+
   this.fbs.consultarPorId("user/", this.uid_paga).subscribe((resultado) => {
     if (resultado.payload.data() != null) {
       let saldo = resultado.payload.data();
@@ -102,6 +105,8 @@ user_saldo_recibe: any = {
      console.log("monto nuevo restao al que paga: " + this.saldo_nuevo_paga)
     });
 
+    //-----CONSULTAR DATOS DE EL QUE RECIBE---------------------------------
+ 
     this.fbs.consultarPorId("user/", this.uid_recibe).subscribe((resultado) => {
       if (resultado.payload.data() != null) {
         let saldo = resultado.payload.data();
@@ -116,9 +121,6 @@ user_saldo_recibe: any = {
         this.saldo_actual_recibe = this.user_saldo_recibe.data.saldo_corriente;
         console.log("saldo atual que recibe : "  + typeof(this.saldo_actual_recibe))
        this.saldo_nuevo_recibe = this.saldo_actual_recibe + this.monto; 
-       //document.write("<p>saldo actual: " + this.saldo_actual_recibe + "  saldo nuevio: " + this.saldo_nuevo_recibe);
-       //document.write("<p>saldo actual tipo: " + typeof(this.saldo_actual_recibe)  + "  saldo nuevio: " + typeof(this.saldo_nuevo_recibe) );
-
        console.log("monto nuevo restao al que recibe: " + this.saldo_nuevo_recibe)
       });
 
@@ -129,7 +131,6 @@ user_saldo_recibe: any = {
   }
 
   make_transfer(){
-    $("boton_pagar").prop('disabled', true);
     if (this.tipo == "ahorros") {
       this.fbs.update("user", this.uid_paga , { saldo_ahorros: this.saldo_nuevo_paga });
       this.fbs.update("user", this.uid_recibe, { saldo_ahorros: this.saldo_nuevo_recibe });
@@ -145,7 +146,6 @@ user_saldo_recibe: any = {
   guardar_movimiento(){}
 
   back(){
-   // console.log("adicionemos")
     this.router.navigate(["/tabs"])
   }
 
@@ -161,8 +161,7 @@ user_saldo_recibe: any = {
     await alert.present();
 
     this.router.navigate(["/tabs"])
-    //console.log('onDidDismiss resolved with role', role);
-  }
+    }
 }
 
 

@@ -27,16 +27,8 @@ export class AdminPage implements OnInit {
   total:number;
   public grantotal;
 
-  // arrayColeccionTareas: any = [{
-  //   id: "",
-  //   data: {} as Carro1
-  //  }];
 
-  constructor(private modalCtrl: ModalController,private firestoreService: FirestoreService,public popoverController: PopoverController, public router:Router, public afAuth:AngularFireAuth) {
-    //this.obtenerListaTareas();
-    //console.log(this.arrayColeccionTareas)
-    //this.consultarviajes();
-   }
+  constructor(private modalCtrl: ModalController,private firestoreService: FirestoreService,public popoverController: PopoverController, public router:Router, public afAuth:AngularFireAuth) { }
 
   ngOnInit() {
   }
@@ -56,11 +48,8 @@ export class AdminPage implements OnInit {
   async getName(uid){
     this.firestoreService.consultarPorId("user/", uid).subscribe((resultado) => {
       if (resultado.payload.data() != null) {
-        //let name = resultado.payload.data();
           this.user_info.id = resultado.payload.id;
           this.user_info.data = resultado.payload.data();
-          // Como ejemplo, mostrar el título de la tarea en consola
-          //console.log("datos de viaje--> " + this.user_info.data.displayName);
       }
        this.name = this.user_info.data.displayName;
       let email = this.user_info.data.email;
@@ -77,8 +66,6 @@ export class AdminPage implements OnInit {
  console.log("abrir menu")
  this.presentPopover("present")
   }
-
-
 
   async presentPopover(ev: any) {
     const popover = await this.popoverController.create({

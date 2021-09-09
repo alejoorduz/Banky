@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
+
   {
     path: 'ingresoadmin',
     loadChildren: () => import('./iniciosesion/ingresoadmin.module').then( m => m.IngresoadminPageModule)
@@ -23,11 +24,11 @@ const routes: Routes = [
    {
     path: 'admin',
     loadChildren: () => import('./corriente/admin.module').then( m => m.AdminPageModule),
-    canActivate:[AuthGuard],
+    //canActivate:[AuthGuard],
   },
   {
     path: 'adicionar',
-    loadChildren: () => import('./generarQR/adicionar.module').then( m => m.AdicionarPageModule)
+    loadChildren: () => import('./generarqr/adicionar.module').then( m => m.AdicionarPageModule)
   },
    {
     path: 'register',
@@ -36,7 +37,7 @@ const routes: Routes = [
   {
     path: 'tabs',
     loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule),
-     canActivate:[AuthGuard],
+    // canActivate:[AuthGuard],
   },
   {
     path: 'demanda',
@@ -44,7 +45,7 @@ const routes: Routes = [
   },
   {
     path: 'adicionardemanda',
-    loadChildren: () => import('./escanearQR/adicionardemanda.module').then( m => m.AdicionardemandaPageModule)
+    loadChildren: () => import('./escanearqr/adicionardemanda.module').then( m => m.AdicionardemandaPageModule)
   },
 ];
 

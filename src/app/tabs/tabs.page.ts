@@ -63,9 +63,6 @@ export class TabsPage implements OnInit {
      
      let watch = this.geolocation.watchPosition();
      watch.subscribe((data) => {
-      // data can be a set of coordinates, or an error (if an error occurred).
-      // data.coords.latitude
-      // data.coords.longitude
      });
   }
 
@@ -73,9 +70,6 @@ export class TabsPage implements OnInit {
     fetch('https://api.openweathermap.org/data/2.5/weather?lat='+this.lat+'&lon='+this.long+'&appid=7985db256b85b778e9af4d7ea225aaeb')
     .then(response=>response.json())
     .then(data=>{this.setWeatherData(data);})
-
-    // let data = JSON.parse('{"coord":{"lon":72.85,"lat":19.01},"weather":[{"id":721,"main":"Haze","description":"haze","icon":"50n"}],"base":"stations","main":{"temp":297.15,"feels_like":297.4,"temp_min":297.15,"temp_max":297.15,"pressure":1013,"humidity":69},"visibility":3500,"wind":{"speed":3.6,"deg":300},"clouds":{"all":20},"dt":1580141589,"sys":{"type":1,"id":9052,"country":"IN","sunrise":1580089441,"sunset":1580129884},"timezone":19800,"id":1275339,"name":"Mumbai","cod":200}');
-    // this.setWeatherData(data);
   }
 
   setWeatherData(data){
@@ -113,7 +107,6 @@ export class TabsPage implements OnInit {
 
 async getuseruid(){
   let uid = await (await this.afAuth.currentUser).uid
- // console.log("uid " + uid)
   this.getName(uid);
 }
 
@@ -121,21 +114,14 @@ async getuseruid(){
 async getName(uid){
   this.fbs.consultarPorId("user/", uid).subscribe((resultado) => {
     if (resultado.payload.data() != null) {
-      //let name = resultado.payload.data();
         this.user_info.id = resultado.payload.id;
         this.user_info.data = resultado.payload.data();
-        // Como ejemplo, mostrar el título de la tarea en consola
-        //console.log("datos de viaje--> " + this.user_info.data.displayName);
     }
      this.name = this.user_info.data.displayName;
     let email = this.user_info.data.email;
     let saldo = this.user_info.data.saldo;
-   // console.log("nombre: "  + this.name)
-   // console.log("email: "  + email);
-   // console.log("saldo: "  + saldo)
 });
 }
-
 
   cerrarsesion(){
     this.authSvc.logout();

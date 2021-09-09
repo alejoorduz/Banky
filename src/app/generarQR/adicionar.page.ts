@@ -50,18 +50,14 @@ export class AdicionarPage implements OnInit {
 
 async getuseruid(){
    this.uid = await (await this.afAuth.currentUser).uid
- // console.log("uid " + uid)
   this.getName(this.uid);
 }
 
 async getName(uid){
   this.fbs.consultarPorId("user/", uid).subscribe((resultado) => {
     if (resultado.payload.data() != null) {
-      //let name = resultado.payload.data();
         this.user_info.id = resultado.payload.id;
         this.user_info.data = resultado.payload.data();
-        // Como ejemplo, mostrar el título de la tarea en consola
-        //console.log("datos de viaje--> " + this.user_info.data.displayName);
     }
      this.name = this.user_info.data.displayName;
     let email = this.user_info.data.email;

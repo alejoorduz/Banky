@@ -8,7 +8,7 @@
     <ion-title > Banky </ion-title>
   </div>
   <div class="headericon">
-     <ion-icon class="icono" name="person-circle-outline"></ion-icon>
+     <ion-icon class="icono"  name="rainy-outline" (click)="this.getLocation()"></ion-icon>
     </div>
   </div>
   </ion-toolbar>
@@ -22,18 +22,8 @@
   <p id="lluvia"></p>
 </div>
 <div class="divWeatherMain"> 
-  <!-- <div *ngIf="WeatherData.isDay" class="weatherWidgetRow">
-      <i class="fas fa-3x fa-sun sun"></i>  
-  </div>   
-  <div *ngIf="!WeatherData.isDay" class="weatherWidgetRow">
-      <i class="fas fa-3x fa-moon moon"></i>  
-  </div>   
-  <div class="weatherWidgetRow cloudDiv">
-      <i class="fas fa-cloud fa-3x cloud"></i>
-  </div> -->
   <div class="weatherWidgetRow" style="font-size: 28px;margin-top: 5px;">{{WeatherData.temp_celcius}}°</div>
   <div class="weatherWidgetRow" style="font-size: 12px;"> {{this.day_mood}}</div>
-  <!-- <div class="weatherWidgetRow" style="font-size: 10px;margin-top: 10px;">{{WeatherData.name}}</div> -->
   <div class="weatherWidgetRow" style="font-size: 10px;">Humedad: {{WeatherData.main.humidity}}%</div>
 </div>
 </div>
@@ -44,7 +34,6 @@
     <ion-tab-button tab="inicio" class="tab_button">
       <ion-icon name="card-outline"></ion-icon>
       <ion-label>Corriente</ion-label>
-      <!-- <ion-badge>6</ion-badge> -->
     </ion-tab-button>
 
     <ion-tab-button tab="add" class="tab_button">

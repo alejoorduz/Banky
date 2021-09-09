@@ -5,11 +5,6 @@
     width: 50%;
     position: absolute;
     top: 15px;
-    //background-color: blue;
-    //align-items: center;  //siempre van a ser del contenedor al igual que align-contect
-    //display: flex;
-    //background-color: #CBCBCB;
-   // font-family: 'Questrial';
   }
 
 
@@ -19,18 +14,14 @@
     }
 
   ion-header{
-    //height: 100px;
     background-color: #000000;
     color: white;
     justify-items: center;
     align-items: center;
-   // border-bottom: white;
-    //box-shadow: 0 20px rgb(228, 43, 134);
-    //border-bottom: 2px solid black;
+
   }
 
   .headercontainer{
-    //background-color: red;
     width: 100%;
     height: 60px;
     display: flex;
@@ -38,7 +29,6 @@
 
 
   .back{
-     // background-color: purple;
       width: 20%;
       height: 40px;   
       display: flex;
@@ -47,7 +37,6 @@
   }
 
   .headertittle{
-   // background-color: powderblue;
    margin-top: 20px;
     width: 60%;
     height: 40px;
@@ -56,7 +45,6 @@
   }
 
   .headericon{
-    //background-color: purple;
     width: 20%;
     height: 60px;
     text-align: center;

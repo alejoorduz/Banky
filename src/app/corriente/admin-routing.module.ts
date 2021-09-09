@@ -22,7 +22,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: () => import('../generarQR/adicionar.module').then( m => m.AdicionarPageModule)
+            loadChildren: () => import('../generarqr/adicionar.module').then( m => m.AdicionarPageModule)
           }
         ]
       },
