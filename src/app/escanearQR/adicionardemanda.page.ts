@@ -1,3 +1,4 @@
+  
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from "@angular/fire/firestore";
 import { FirestoreService } from '../firestore.service';
@@ -75,17 +76,13 @@ user_saldo_recibe: any = {
     this.tipo = arrayDeCadenas[2];
     this.monto = parseInt(arrayDeCadenas[3]) ;
     this.razon = arrayDeCadenas[4];
-    //document.write('<p>el nombre es : "' + this.nombre + '"' +'<br>el uid es : "' + this.uid_recibe + '"' 
-    //+ '<br>la cuenta es : "' + this.tipo + '"' + '<br>el monto es : "' + this.monto + '"' + '<br>el tipo de monto es : "' + typeof(this.monto ) 
-    //+ '"' + '<br>la razon es es : "' + this.razon + '"</p>');
  }
 
   consultar_saldos(){
-    $("boton_pagar").prop('disabled', true);
+    $("#boton_pagar").hide();
       console.log("info de pago: " + this.scannedCode)
     console.log("uid paga: " + this.uid_paga + "  uid recibe: " + this.uid_recibe)
-    //document.write("<p>uid paga: " + this.uid_paga + "  uid recibe: " + this.uid_recibe);
-  //Restale la plata al que la envia
+
 
   //-----CONSULTAR DATOS DE EL QUE PAGA---------------------------------
 
@@ -163,5 +160,3 @@ user_saldo_recibe: any = {
     this.router.navigate(["/tabs"])
     }
 }
-
-
