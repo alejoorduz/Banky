@@ -1,0 +1,30 @@
+<ion-content>
+
+  <div class="form__div">
+    <div class="tittle">Transferir dinero a cuentas inscritas</div>
+  <ion-item class="form__div--item">
+    <ion-label position="floating">Cuenta</ion-label>
+    <ion-select [(ngModel)]="cuenta" placeholder="Select One" (ngModelChange)="consult_reciever_uid()">
+      <ion-select-option *ngFor="let proyecto of lista_proyectos" style="font-size: 10px;" [value]="proyecto.data">
+        {{proyecto.id}} - {{proyecto.data.tipo}} - {{proyecto.data.numero}}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item class="form__div--item">
+    <ion-label type="number" position="floating">Cantidad</ion-label>
+    <ion-input [(ngModel)]="cantidad" placeholder="$0.00"></ion-input>
+  </ion-item>
+  <ion-item class="form__div--item">
+    <ion-label>De que cuenta sale el dinero</ion-label>
+    <ion-select [(ngModel)]="tipo" placeholder="Select One">
+      <ion-select-option value="corriente">Corriente</ion-select-option>
+      <ion-select-option value="ahorros">Ahorros</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <button class="form__div--boton" (click)="money_trasnfer()">Enviar Dinero</button>
+  <button class="form__div--boton" routerLink="/tabs">
+    Atrás
+  </button>
+  </div>
+
+</ion-content>

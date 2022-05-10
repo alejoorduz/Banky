@@ -35,23 +35,15 @@
   align-items: center;
 }
 
-.div_email{
-  margin-top: 50px;
+.div_input{
+  margin-top: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
  // background-color: rebeccapurple;
-  height: 60px;
+  height: 50px;
 }
 
-.div_contra{
-  display: flex;
-  margin-top: 30px;  
-  justify-content: center;
-  align-items: center;
- // background-color: tomato;
-  height: 60px;
-}
 
 .div_login{
   display: flex;
@@ -132,30 +124,17 @@ height: 30px;
     margin-top: 80px;
 }
 
-.email{
+.input_user{
   font-size: 15px;
   align-self: center;
   width: 80%;
   height: 50px;
-  max-width: 350px;
+  max-width: 250px;
+  border-radius: 30px;
  // background-color: red;
  // margin-top: 50px;
   color: black
 }
-
-
-.contra{
-  font-size: 15px;
-  align-self: center;
-  width: 80%;
-  height: 50px;
-  max-width: 350px;
- // background-color: red;
- // margin-top: 50px;
-  color: black
-}
-
-
 
 .general{
     width: 100%;

@@ -22,6 +22,57 @@
     </div>
     </div>
     </div>
+
+    <div class="total__cardholder__two">
+      <div class="total__divlabel__two">
+        <div class="total__divlabel__first">
+      <!-- <ion-icon name="logo-usd"></ion-icon> -->
+      <ion-label class="total__divlabel--tipo">Movimientos de la Cuenta Corriente</ion-label>
+      <!-- <ion-icon class="total__divlabel__tipo--icon"  name="invert-mode-outline"></ion-icon> -->
+      </div>
+
+      <ion-grid class="grid">
+        <ion-col class="col">
+          <ion-row class="row" *ngFor="let movimiento of lista_movimientos">
+              <div class="card">
+                <div class="top">
+                  <div class="titulo">  
+                    <strong>Enviaste {{movimiento.data.cantidad}} a {{ movimiento.data.recibe }}</strong>  
+                  </div>
+                  <!-- <div class="dia_hora">  
+                    <div class="dia">
+                        {{ comunicado.data.dia }}  
+                    </div>
+                    <div class="hora">
+                      {{ comunicado.data.hora }} 
+                  </div>
+                  </div> -->
+              </div>
+                <div class="tema">
+                  El dia {{movimiento.data.fecha}} a las {{movimiento.data.hora}}
+                </div>
+                <div class="reporte">
+                Desde tu cuenta de {{movimiento.data.tipo_salida}} número {{movimiento.data.cuenta_salida}}
+              </div>
+                 <!-- <ion-icon class="trash-icon" (click)="delete(comunicado.id)" name="trash-outline"></ion-icon> -->
+            </div>
+          </ion-row>
+        </ion-col>
+      </ion-grid>
+
+      <!-- <div class="total__divlabel__second">
+      <ion-label class="total__divlabel--numero">{{this.cuenta}}</ion-label>
+      </div> -->
+      <!-- <div class="total__divlabel__third">
+      <ion-label class="total__divlabel--saldotext">Saldo Disponible</ion-label>
+      </div> -->
+      <!-- <div class="total__divlabel__forth">
+      <ion-label class="total__divlabel--saldo">{{this.saldo | currency:"$":true:"1.2"}}</ion-label>
+      </div> -->
+      </div>
+      </div>
+
+
  </div>
 </ion-content>
 

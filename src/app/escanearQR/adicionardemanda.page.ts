@@ -92,9 +92,9 @@ user_saldo_recibe: any = {
         this.user_saldo_paga.id = resultado.payload.id;
         this.user_saldo_paga.data = resultado.payload.data();
      }
-     if (this.tipo == "ahorros") {
+     if (this.tipo == "ahorros"){
       this.saldo_actual_paga = this.user_saldo_paga.data.saldo_ahorros;
-     } if (this.tipo == "corriente") {
+     } if (this.tipo == "corriente"){
       this.saldo_actual_paga = this.user_saldo_paga.data.saldo_corriente;
      }
       console.log("saldo atual que paga : "  + this.saldo_actual_paga)

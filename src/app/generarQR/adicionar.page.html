@@ -2,10 +2,12 @@
 
   <div class="form__div">
     <div class="tittle">Generar Codigo QR</div>
+    
   <ion-item class="form__div--item">
     <ion-label type="number" position="floating">Cantidad</ion-label>
     <ion-input [(ngModel)]="cantidad" placeholder="$0.00"></ion-input>
   </ion-item>
+
   <ion-item class="form__div--item">
     <ion-label>Tipo de cuenta</ion-label>
     <ion-select [(ngModel)]="tipo" placeholder="Select One">
@@ -13,6 +15,7 @@
       <ion-select-option value="ahorros">Ahorros</ion-select-option>
     </ion-select>
   </ion-item>
+
   <ion-item class="form__div--item">
     <ion-label position="floating">Concepto</ion-label>
     <ion-input [(ngModel)]="razon"></ion-input>

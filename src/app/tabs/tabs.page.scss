@@ -78,6 +78,7 @@
   
 .tabs{
   margin-top: 160px;
+  overflow-y: scroll;
  }
 
   .tab_bar{
@@ -110,6 +111,8 @@
 
 ion-tabs{
   color: transparent;
+  overflow-y: scroll;
+  height: auto;
 }
 
 

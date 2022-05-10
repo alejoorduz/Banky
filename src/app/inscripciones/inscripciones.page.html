@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="headercontainer">
+      <div class="back">
+
+      </div>
+ 
+  <div class="headericon">
+    </div>
+  </div>
+  </ion-toolbar>
+ 
+</ion-header>
+
+<ion-content>
+  <div class="headertittle">
+    <ion-title >Inscribir cuentas de terceros</ion-title>
+  </div>
+  <form>
+    <div class="div_contra">
+      <ion-item class="email">
+        <ion-label position="floating">Alias de la cuenta</ion-label>
+        <ion-input type="text" #alias required id="alias"></ion-input>
+      </ion-item>
+      </div>
+      <div class="div_contra">
+      <ion-item class="email">
+        <ion-label position="floating">Nombre del titular de la cuenta</ion-label>
+        <ion-input type="text" #nombre required id="nombre"></ion-input>
+      </ion-item>
+      </div>
+      <div class="div_contra">
+        <ion-item class="email">
+          <ion-label position="floating">Cedula del titular</ion-label>
+          <ion-input type="text" #cedula required id="cedula"></ion-input>
+        </ion-item>
+        </div>
+        <div class="div_contra">
+        <ion-item class="email">
+          <ion-label>Tipo de cuenta</ion-label>
+          <ion-select [(ngModel)]="tipo" placeholder="Select One" name="tipo">
+            <ion-select-option value="corriente">Corriente</ion-select-option>
+            <ion-select-option value="ahorros">Ahorros</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
+      <div class="div_contra">
+        <ion-item class="contra">
+          <ion-label position="floating">Numero de cuenta</ion-label>
+          <ion-input type="numero" #password required id="numero"></ion-input>
+        </ion-item>
+      </div>
+      <div class="div_login">
+    <ion-row>
+      <ion-col>
+        <button type="submit" class="bot_entrar" (click)="add_account(alias,nombre,cedula,tipo,numero)">
+          Agregar cuenta
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <button type="submit" class="bot_entrar"  (click)="back()">
+          Atrás
+        </button>
+      </ion-col>
+    </ion-row>
+</div>
+  </form>
+</ion-content>

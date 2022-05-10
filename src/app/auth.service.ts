@@ -61,7 +61,7 @@ export class AuthService {
     }
     catch(error){
       console.log("Error:",error)
-      this.presentAlert(error);
+      this.presentAlert("No se pudo restablecer la contraseña, intentalo de nuevo");
     }
   }
 
@@ -86,7 +86,8 @@ export class AuthService {
     }
     catch(error){
       console.log("Error:",error)
-      this.presentAlert(error);
+      this.presentAlert("No se pudo completar el registro, verifica tus datos e intentalo de nuevo (No usar autorelleno)");
+
     }
   }
 
@@ -96,7 +97,7 @@ export class AuthService {
     }
     catch(error){
       console.log("Error:",error)
-      this.presentAlert(error);
+      this.presentAlert("No se pudo enviar el mensaje, intentalo de nuevo");
     }
   }
 
@@ -108,7 +109,7 @@ export class AuthService {
     }
     catch(error){
       console.log("Error:",error)
-      this.presentAlert(error);
+      this.presentAlert("Verifica el usuario o la contraseña");
     }
   }
 

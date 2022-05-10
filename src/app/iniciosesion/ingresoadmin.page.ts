@@ -24,18 +24,14 @@ export class IngresoadminPage implements OnInit {
   }
 
 async onlogin(email,password){
-      console.log("iniciando sesion o error")
     try {
       const user = await this.authSvc.login(email.value,password.value);
       if (user){
-        console.log("y aca?")
         const isverified = this.authSvc.isEmailVerified(user);
-        console.log("entre sisass perro" + user)
         this.redirectUser(isverified)
       }
     } catch (error) {
-      console.log("el error es: " + error);
-      
+      console.log("error: " + error);
       this.presentAlert(error)
     }
 }
@@ -44,7 +40,7 @@ async presentAlert(error) {
   const alert = await this.alertCtrl.create({
     cssClass: 'my-custom-class',
     header: 'Error',
-    subHeader: 'Verifica el error',
+    subHeader: 'Verifica el usuario o contraseña',
     message: error,
     buttons: ['OK']
   });

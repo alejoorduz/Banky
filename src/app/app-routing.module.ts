@@ -47,6 +47,14 @@ const routes: Routes = [
     path: 'adicionardemanda',
     loadChildren: () => import('./escanearqr/adicionardemanda.module').then( m => m.AdicionardemandaPageModule)
   },
+  {
+    path: 'inscripciones',
+    loadChildren: () => import('./inscripciones/inscripciones.module').then( m => m.InscripcionesPageModule)
+  },
+  {
+    path: 'trasnferir',
+    loadChildren: () => import('./trasnferir/trasnferir.module').then( m => m.TrasnferirPageModule)
+  },
 ];
 
 @NgModule({

@@ -10,6 +10,8 @@ import { FirestoreService } from "../firestore.service";
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { PopoverController } from '@ionic/angular';
 import { PopinfoComponent } from '../components/popinfo/popinfo.component';
+import { ModalController } from "@ionic/angular";
+import { InscripcionesPage } from "../inscripciones/inscripciones.page";
 
 @Component({
   selector: 'app-tabs',
@@ -36,7 +38,9 @@ export class TabsPage implements OnInit {
 
   name: any 
 
-  constructor(public popoverController: PopoverController,private geolocation: Geolocation, private fbs: FirestoreService ,private authSvc: AuthService, public router: Router, public afAuth:AngularFireAuth, private afs: AngularFirestore) {
+  uid;
+
+  constructor(public popoverController: PopoverController,private modalCtrl: ModalController,private geolocation: Geolocation, private fbs: FirestoreService ,private authSvc: AuthService, public router: Router, public afAuth:AngularFireAuth, private afs: AngularFirestore) {
 
    }
 
@@ -60,7 +64,6 @@ export class TabsPage implements OnInit {
      }).catch((error) => {
        console.log('Error getting location', error);
      });
-     
      let watch = this.geolocation.watchPosition();
      watch.subscribe((data) => {
      });
@@ -74,14 +77,11 @@ export class TabsPage implements OnInit {
 
   setWeatherData(data){
     this.WeatherData = data;
-    console.log("data: " + this.WeatherData.main)
     this.day_mood = (this.WeatherData.weather[0].main)
-    console.log("MOOOOOOD: " + this.day_mood)
     this.WeatherData.temp_celcius = (this.WeatherData.main.temp - 273.15).toFixed(0);
     if (this.day_mood === "Rain") {
       $("#lluvia").text("No salgas, esta lloviendo")
       $("#lluvia").css("color","red");
-      console.log("si llueve")
     }else{
       $("#lluvia").text("Puedes salir, no esta lloviendo")
       $("#lluvia").css("color","green");
@@ -89,10 +89,8 @@ export class TabsPage implements OnInit {
   }
 
   open_options(){
-    console.log("abrir menu")
     this.presentPopover("popover")
      }
-
      async presentPopover(ev: any) {
       const popover = await this.popoverController.create({
         component: PopinfoComponent,
@@ -106,8 +104,8 @@ export class TabsPage implements OnInit {
     }
 
 async getuseruid(){
-  let uid = await (await this.afAuth.currentUser).uid
-  this.getName(uid);
+   this.uid = await (await this.afAuth.currentUser).uid
+  this.getName(this.uid);
 }
 
 
@@ -118,9 +116,33 @@ async getName(uid){
         this.user_info.data = resultado.payload.data();
     }
      this.name = this.user_info.data.displayName;
+     console.log("nombre inicial: ", this.name)
     let email = this.user_info.data.email;
     let saldo = this.user_info.data.saldo;
 });
+}
+
+async inscribir_cuenta(){
+  const modal = await this.modalCtrl.create({
+    component: InscripcionesPage,
+    cssClass: 'adding_modal',
+    componentProps: {
+      name: this.name,
+       uid: this.uid       
+    }
+  });
+  modal.onDidDismiss()
+  .then((data) => {
+    console.log("esta es la data que devuelve el modal")
+    console.log(data)
+    var closing = data['data'];
+    if (closing) {
+      this.modalCtrl.dismiss()
+    }else{
+      console.log("no me cierro")
+    } 
+});
+  return await modal.present();
 }
 
   cerrarsesion(){

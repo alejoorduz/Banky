@@ -7,7 +7,7 @@ import { PopinfoComponent } from '../components/popinfo/popinfo.component';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from "@angular/fire/auth";
-
+import { LoadingController } from '@ionic/angular';
 
 
 
@@ -30,10 +30,13 @@ export class DemandaPage implements OnInit {
   total:number;
   public grantotal;
 
-  constructor(private modalCtrl: ModalController,private fbs: FirestoreService,public popoverController: PopoverController, public router:Router, public afAuth:AngularFireAuth) {
+  lista_movimientos = [];
+  loading: HTMLIonLoadingElement;
+  constructor(private loadingController: LoadingController,private modalCtrl: ModalController,private fbs: FirestoreService,public popoverController: PopoverController, public router:Router, public afAuth:AngularFireAuth) {
      }
 
   ngOnInit() {
+    this.presentLoading();
   }
 
   ionViewDidEnter(){
@@ -66,8 +69,36 @@ export class DemandaPage implements OnInit {
       console.log("saldo: "  + this.saldo)
       console.log("cuenta: "  + this.cuenta)
   });
+  setTimeout(() => {
+    this.movimientos()
+  }, 800);
   }
 
+    movimientos(){
+    
+    this.fbs.consultar("/cuentas/"+this.name+"/cuentas/ahorros/movimientos").subscribe((servicios) => {
+      this.lista_movimientos = [];
+      servicios.forEach((datosTarea: any) => {
+        this.lista_movimientos.push({
+          id: datosTarea.payload.doc.id,
+          data: datosTarea.payload.doc.data()
+        });
+      })
+      //this.password = this.lista_proyectos.data.key
+      console.log("traigamos la lista de edificios")
+      console.log(this.lista_movimientos)
+    });
+    setTimeout(() => {
+      this.loading.dismiss();
+         }, 800);
+  }
+
+  async presentLoading() {
+    this.loading = await this.loadingController.create({
+      message: 'Descargando movimientos...'
+    });
+    return this.loading.present();
+  }
 //-----------------------------------------------------------------------
 }
 
