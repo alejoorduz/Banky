@@ -1,7 +1,7 @@
 # Banky
 Demo
 
-1- Clonar repositorio en escritorio o documentos /n
-2- Correr el comando -> npm install /n
-3. Correr el comando -> Ionic serve /n
+1- Clonar repositorio en escritorio o documentos 
+2- Correr el comando -> npm install 
+3. Correr el comando -> Ionic serve 
 
